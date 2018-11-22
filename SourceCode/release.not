@@ -1,0 +1,109 @@
+01_00 07/11/2018
+-----------------
+1. This is the release to github of zBang
+2. CyberArk's name/logo was deleted
+3. Log window was enlarged and bugs were fixed
+4. removed the license window 22/08
+
+00_30rel 20/09/2018
+-------------------
+1. Changes in ACLight powershell module
+
+
+00_30 14/06/2018
+----------------
+1. Bug fixes to support Impact Berlin scenarios
+2. New ACLight.ps1 version including new column: ObjectName
+3. 'Cloacking' fixed to 'Cloaking' in SID History
+
+
+00_27 23/05/2018
+----------------
+1. Bug fix in the saving of exported zip file (not deleting the scanner.zip file correctly)
+2. added a few details to the log file, e.g. zBang version #, username, machine name, cpu usage and free memory)
+
+
+00_26 01/04/2018
+----------------
+1. Bug fix in the SID History. Should now show upto 10 SID History accounts whether they are at risk or not
+
+00_25 30/01/2018
+------------------
+1. Zoom Control is re-filled every time a user double clicks a card
+2. EULA has been updated by Rotem Regev
+3. The .host exe has been removed from the output directory
+4. The WPF executable should be also signed
+
+
+00_24 04/01/2018
+------------------
+1. Bug fixes with reading SIDs from ACLight
+2. Import handling modifications
+3. Export: skeleton scanner was removed from the exported zip file
+4. Minor bugs and GUI improvements
+
+
+
+00_20 31/12/17
+----------------
+1. Some minor Graphic changes with icons and fonts
+
+
+00_18 27/12/17
+----------------
+1. Seems like all tools can now be effectively launched from the GUI in the LAN !
+2. NOTE: Updated powershell files are in the version.zip file of this project. DO NOT OVERWRITE THEM!!!
+
+
+
+00_17 24/12/17
+----------------
+1. Moved all the project, when unzipped, into System32 to try to fool Powershell Constrained Mode
+
+
+00_16 24/12/17
+----------------
+1. Fixed some small bugs with showing ACLLight on graph and using TabItems
+2. Fixed bugs with Import mechanism
+3. Added checking ACLight privileged accounts by RiskySPN
+
+
+
+00_15 21/12/17
+----------------
+1. Added the EULA with a nice window
+
+
+
+00_14 19/12/17
+----------------
+1. Capture of console output has been canceled for ACLight (temporarily?)
+
+
+00_13 19/12/17
+----------------
+1. After a meeting with Boris a new GUI outline is introduced
+2. Bug fix with a crash after a Domain-less run
+3. Some colors have been imporved in Mystique and RiskySPNs
+4. Import, Export and Relaunch buttons were remodeled
+5. ZoomControl has been moved to the far right-bottom of the window
+6. A Help button has been introduced (currently not working)
+
+
+00_09 17/12/17
+----------------
+1. Deleted '@Forest' from the domain cards
+2. Added a new dialog window to select a domain (or all domains) when ACLight is launched on a forest
+
+
+
+00_08 14/12/17
+----------------
+1. Bug fixes in Skeleton Key graphics presentation
+
+
+00_07 14/12/17
+----------------
+1. Account cards are now divided into shadow admins and privileged via groups
+2. App checks for .Net 4.5 and should alert and quit if installed .Net is below that version
+3. Import and Export buttons have been introduced
