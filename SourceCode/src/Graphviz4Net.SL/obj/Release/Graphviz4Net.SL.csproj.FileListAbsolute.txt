@@ -1,0 +1,2 @@
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.SL\obj\Release\Graphviz4Net.SL.csprojResolveAssemblyReference.cache
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.SL\obj\Release\Graphviz4Net.SL.g.resources
