@@ -1,0 +1,13 @@
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\bin\Release\Graphviz4Net.WPF.dll
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\bin\Release\Graphviz4Net.WPF.pdb
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\bin\Release\Graphviz4Net.dll
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\bin\Release\Antlr3.Runtime.dll
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\bin\Release\Graphviz4Net.pdb
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\obj\Release\Graphviz4Net.WPF.csprojResolveAssemblyReference.cache
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\obj\Release\Graphviz4Net.WPF_MarkupCompile.cache
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\obj\Release\Graphviz4Net.WPF_MarkupCompile.lref
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\obj\Release\Themes\Generic.baml
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\obj\Release\Graphviz4Net.WPF.g.resources
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\obj\Release\Graphviz4Net.WPF.dll
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.WPF\obj\Release\Graphviz4Net.WPF.pdb
