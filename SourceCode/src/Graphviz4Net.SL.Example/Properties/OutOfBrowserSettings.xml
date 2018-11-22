@@ -1,0 +1,10 @@
+<OutOfBrowserSettings ShortName="Graphviz4Net.SL.Example Application" EnableGPUAcceleration="True" ShowInstallMenuItem="True">
+  <OutOfBrowserSettings.Blurb>Graphviz4Net.SL.Example Application on your desktop; at home, at work or on the go.</OutOfBrowserSettings.Blurb>
+  <OutOfBrowserSettings.WindowSettings>
+    <WindowSettings Title="Graphviz4Net.SL.Example Application" />
+  </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.SecuritySettings>
+    <SecuritySettings ElevatedPermissions="Required" />
+  </OutOfBrowserSettings.SecuritySettings>
+  <OutOfBrowserSettings.Icons />
+</OutOfBrowserSettings>
