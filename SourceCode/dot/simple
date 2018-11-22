@@ -1,0 +1,17 @@
+digraph g { 
+    0 [ width="0.486111111111111" ,height="0.707777777777778" ,shape="rect" ,fixesize="true"  ];
+    1 [ width="0.486111111111111" ,height="0.707777777777778" ,shape="rect" ,fixesize="true"  ];
+    2 [ width="0.486111111111111" ,height="0.707777777777778" ,shape="rect" ,fixesize="true"  ];
+    3 [ width="0.486111111111111" ,height="0.707777777777778" ,shape="rect" ,fixesize="true"  ];
+    4 [ width="0.486111111111111" ,height="0.707777777777778" ,shape="rect" ,fixesize="true"  ];
+    5 [ width="0.486111111111111" ,height="0.707777777777778" ,shape="rect" ,fixesize="true"  ];
+    0 -> 1 [  ];
+    0 -> 2 [  ];
+    0 -> 3 [  ];
+    1 -> 2 [  ];
+    1 -> 3 [  ];
+    2 -> 3 [  ];
+    4 -> 5 [  ];
+    4 -> 2 [  ];
+    2 -> 5 [  ];
+}

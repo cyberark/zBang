@@ -1,0 +1,24 @@
+digraph g { 
+	graph [ratio=0.5]
+
+    0 [ width="0.486111111111111" ,height="0.707777777777778" ,shape="rect" ,fixesize="true"  ];
+    1 [ width="0.486111111111111" ,height="0.707777777777778" ,shape="rect" ,fixesize="true"  ];
+    2 [ width="0.486111111111111" ,height="0.707777777777778" ,shape="rect" ,fixesize="true"  ];
+	subgraph cluster0 {
+		label="ViewModels";
+		3 -> 4 -> 5;
+		5 -> 3;		
+	}
+	
+	subgraph cluster1 {
+		label="Views";
+		6 -> 7 [label=hranaA];
+		6 -> 5;
+		7 -> 4;
+	}	
+	
+	5 -> 0
+    0 -> 1 [  ];
+    0 -> 2 [label=hranaB];
+    1 -> 2 [  ];
+}

@@ -1,0 +1,10 @@
+digraph g {
+	node [label="\N"];
+	graph [bb="0,0,93,232"];
+	0 [width="0.47222", height="0.70833", shape=rect, fixesize=true, pos="56,206"];
+	1 [width="0.47222", height="0.70833", shape=rect, fixesize=true, pos="17,116"];
+	2 [width="0.47222", height="0.70833", shape=rect, fixesize=true, pos="50,26"];
+	0 -> 1 [labeldistance=1, headlabel=N, taillabel="1..0", pos="e,28.099,141.61 44.928,180.45 40.935,171.23 36.358,160.67 32.08,150.8", head_lp="35.581,148.25", tail_lp="37.447,173.81"];
+	0 -> 2 [labeldistance=1, headlabel=N, taillabel="1..0", label=hranaB, pos="e,50.858,51.742 55.14,180.21 54.107,149.2 52.366,96.969 51.2,61.998", lp="73,116", head_lp="55.384,60.659", tail_lp="50.615,171.29"];
+	1 -> 2 [labeldistance=1, headlabel=N, taillabel="1..0", pos="e,40.608,51.614 26.368,90.45 29.712,81.33 33.541,70.889 37.128,61.105", head_lp="41.456,61.578", tail_lp="25.52,80.486"];
+}
