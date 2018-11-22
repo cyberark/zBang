@@ -1,0 +1,5 @@
+DomainName,DomainFunctionalLevel,DCname,DCinfected
+LAN.DC.research,Level7=2016,DC1.research.local,Yes
+LAN.DC.research,Level7=2016,DC2.research.local,No
+LAN.DC.research,Level7=2016,DC3.research.local,No
+DEV.DC.research,Level7=2016,DEV-DC.research.local,No

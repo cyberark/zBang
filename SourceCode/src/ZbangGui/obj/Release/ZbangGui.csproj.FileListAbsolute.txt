@@ -1,0 +1,7 @@
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\ZbangGui\bin\Release\ZbangGui.exe.config
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\ZbangGui\bin\Release\ZbangGui.exe
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\ZbangGui\bin\Release\ZbangGui.pdb
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\ZbangGui\obj\Release\ZbangGui.Properties.Resources.resources
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\ZbangGui\obj\Release\ZbangGui.csproj.GenerateResource.Cache
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\ZbangGui\obj\Release\ZbangGui.exe
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\ZbangGui\obj\Release\ZbangGui.pdb
