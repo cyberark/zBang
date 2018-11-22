@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-US" style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- saved from url=(0014)about:localhost -->
+
+<!--[if ie]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>The ACLight Abusable ACLs Explanations </title>
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://secure.gravatar.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="stylesheet" id="simple-payments-css" href="./ACLight-web/simple-payments.css" type="text/css" media="all">
+<link rel="stylesheet" id="krakatau-lite-bootstrap-css" href="./ACLight-web/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="krakatau-lite-plugin-css-css" href="./ACLight-web/plugin.css" type="text/css" media="all">
+<link rel="stylesheet" id="krakatau-lite-style-css" href="./ACLight-web/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="krakatau-lite-font-css" href="./ACLight-web/font.css" type="text/css" media="all">
+<link rel="stylesheet" id="krakatau-slug-fonts-css" href="./ACLight-web/css" type="text/css" media="all">
+<link rel="stylesheet" id="social-logos-css" href="./ACLight-web/social-logos.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="open-sans-css" href="./ACLight-web/css(1)" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="./ACLight-web/jetpack.css" type="text/css" media="all">
+<script type="text/javascript" src="./ACLight-web/jquery.js.x"></script>
+<script type="text/javascript" src="./ACLight-web/jquery-migrate.min.js.x"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./ACLight-web/related-posts.js.download"></script>
+<script type="text/javascript" src="./ACLight-web/modernizr.js.download"></script>
+<script type="text/javascript" src="./ACLight-web/respond.js.download"></script>
+<script type="text/javascript" src="./ACLight-web/fitVids.js.download"></script>
+<link rel="https://api.w.org/" href="https://wald0.com/index.php?rest_route=/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://wald0.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://wald0.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Introducing BloodHound" href="https://wald0.com/?p=68">
+<meta name="generator" content="WordPress 4.8.4">
+<link rel="canonical" href="https://wald0.com/?p=112">
+<link rel="shortlink" href="https://wp.me/p8JKgz-1O">
+<!--link rel="alternate" type="application/json+oembed" href="https://wald0.com/index.php?rest_route=%2Foembed%2F1.0%2Fembed&amp;url=https%3A%2F%2Fwald0.com%2F%3Fp%3D112">
+<link rel="alternate" type="text/xml+oembed" href="https://wald0.com/index.php?rest_route=%2Foembed%2F1.0%2Fembed&amp;url=https%3A%2F%2Fwald0.com%2F%3Fp%3D112&amp;format=xml" -->
+
+<link rel="dns-prefetch" href="https://v0.wordpress.com/">
+<link rel="dns-prefetch" href="https://i0.wp.com/">
+<link rel="dns-prefetch" href="https://i1.wp.com/">
+<link rel="dns-prefetch" href="https://i2.wp.com/">
+<style type="text/css">img#wpstats{display:none}</style>		
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		<meta name="description" content="  Intro &amp; Background In 2014, Emmanuel Gras and Lucas Bouillot presented their work titled &quot;Chemins de contrôle en environement Active Directory&quot; (&quot;Active Directory Control Paths&quot;) at the Symposium sur la sécurité des technologies de l&#39;information et des communications (Symposium on Information and Communications Technology Security), where they used graph theory and Active Directory object…">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="BloodHound 1.3 – The ACL Attack Path Update">
+<meta property="og:url" content="https://wald0.com/?p=112">
+<meta property="og:description" content="  Intro &amp; Background In 2014, Emmanuel Gras and Lucas Bouillot presented their work titled “Chemins de contrôle en environement Active Directory” (“Active Directory Control Pa…">
+<meta property="article:published_time" content="2017-05-15T23:16:18+00:00">
+<meta property="article:modified_time" content="2017-05-16T18:42:39+00:00">
+<meta property="og:site_name" content="wald0.com">
+<meta property="og:image" content="https://wald0.com/wp-content/uploads/2017/05/InboundControl.png">
+<meta property="og:image:width" content="852">
+<meta property="og:image:height" content="212">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+
+<style type="text/css"></style><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./BloodHound 1.3 – The ACL Attack Path Update – wald0.com_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./BloodHound 1.3 – The ACL Attack Path Update – wald0.com_files/services.css"></head>
+
+<body class="post-template-default single single-post postid-112 single-format-standard" style="background-color:#F0F0F0;     word-wrap:break-word;
+    -ms-word-wrap:break-word;
+    font-size:16px;
+    font-size:1.6rem;
+    height:100%;
+    line-height:1.8;
+    font-family: Verdana;     text-align:center;">
+
+
+
+<div class="container">
+
+<header id="header" class="header col-md-3" data-scroll-reveal="bottom move">
+</header>
+
+
+
+
+
+
+
+
+<div id="main" class="site-main col-md-9 clearfix">
+
+
+		<div id="content-wrapper" class="wrapper">
+
+
+		<article id="post-112" class="post clearfix post-112 type-post status-publish format-standard hentry category-acl category-active-directory category-bloodhound category-uncategorized">
+
+
+<div data-scroll-reveal="bottom move" class="post-content clearfix">
+         
+                  
+            <div class="post-entry">                                                             
+                
+          <div class="post-title">
+            <h2 style="font-family: Montserrat; font-size: 40px; font-weight: 400; line-height:1.11111;" >
+                <a href="https://www.cyberark.com" target="_blank" title="The ACLight Attack-Defense Vectors">The ACLight Attack-Defense Vectors</a>
+
+            </h2>
+           
+         </div><!-- post-title --> 
+
+ 
+                
+                    <div class="post-meta text-center">  
+
+    <dl style="font-family: Verdana; font-size: 14px;">
+        <dd><a href="#"></a></dd>
+        <dd> CyberArk Labs /</dd> 
+        <dd> Zbang Tools</dd>
+    </dl>
+
+    </div>         
+		<div class="bord"></div>
+		  <div class="inner-content clearfix" style="text-align:left; font-family: Verdana; font-size: 14px; ">
+          <p><strong>&nbsp;</strong></p>
+<h3>Intro &amp; Background</h3>
+<p>ACLight is an Active Directory privileges scanner, using graph theory and Active Directory Access Control Lists to answer the million dollar question <a href="https://github.com/cyberark/ACLight" <a href="https://www.thesitewizard.com/" target="_blank">"Who is a Privileged User"</a>. Answering this question provides invaluable insights both to attackers and defenders of a network, and definitely broadens the attack surface of organizations.</p>
+<p><span id="more-112"></span></p>
+<p>&nbsp;</p>
+<h3>What are ACLs?</h3>
+<p>When we talk about ACL-based attacks, we are specifically referring to Access Control Entries (ACEs) which populate Discretionary Access Control Lists (DACLs). DACLs reside within security descriptors, which reside within securable objects.  Notably, Active Directory users, groups, and computers are securable objects. Access Control Entries describe the allowed and denied permissions for other principals in Active Directory against the securable object.</p>
+<p>&nbsp;</p>
+<p>The best example of this is when one object has “full control” over another object. Consider the “Domain Admins” group, for example. It makes sense that the “Domain Admins” group would have full control over every other object in a domain:</p>
+<p>&nbsp;</p>
+<p>Of course the Domain Admins group has full control of every other object in Active Directory; however, as attackers, we are interested in how we can abuse ACEs to gain control of a domain admin or a user or group that gets us closer to our target objective. Additionally, the owner of an object has complete control (GenericAll equivalent) of the object, regardless of any explicit deny ACEs.</p>
+<p>&nbsp;</p>
+<h3>Abusable ACEs</h3>
+<ul>
+<li><b><font color="blue">Chng-Password:</b></font> The ability to change the target user’s password without knowing the current value.<br/>Formal ACL name is <i>User-Force-Change-Password</i></li>
+<li><b><font color="blue">WriteMembers:</b></font> The ability to add arbitrary users, groups or computers to the target group.</li>
+<li><b><font color="blue">GenericAll:</b></font> Full object control, including the ability to add other principals to a group, change a user password without knowing its current value, register an SPN with a user object, etc...</li>
+<li><b><font color="blue">GenericWrite:</b></font> The ability to update any non-protected target object parameter value. For example, update the “scriptPath” parameter value on a target user object to cause that user to run your specified executable/commands the next time that user logs on.</li>
+<li><b><font color="blue">Owner (WriteOwner):</b></font> The ability to update the owner of the target object. Once the object owner has been changed to a principal the attacker controls, the attacker may manipulate the object any way they see fit.</li>
+<li><b><font color="blue">WriteDACL:</b></font> The ability to write a new ACE to the target object’s DACL. For example, an attacker may write a new ACE to the target object DACL giving the attacker “full control” of the target object.</li>
+<li><b><font color="blue">ExtendedAll:</b></font> The ability to perform any action associated with extended Active Directory rights against the object. For example, adding principals to a group and force changing a target user’s password are both examples of extended rights. Abused with <a href="https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1#L4967">Set-DomainUserPassword</a> or <a href="https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1#L9893">Add-DomainGroupMember</a>.</li>
+<li><b><font color="blue">DCSync:</b></font> The ability to request password hashes for all users in the domain (including the password hash of the Kerberos Key Distribution Center, <i>krbtgt</i>), without having local domain admin rights on the domain controller and <b>without being a member of any privileged group</b></li>
+</ul>
+</div><!-- post-content -->            
+
