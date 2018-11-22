@@ -1,0 +1,176 @@
+<!-- #######  YAY, I AM THE SOURCE EDITOR! #########-->
+<h3 style="color: #2e6c80;">zBang includes five different scans:</h3>
+<ol>
+<li>ACLight scan - discovers the most privileged accounts that must be protected, including suspicious Shadow Admins.</li>
+<li>Skeleton Key scan - discovers Domain Controllers who might be infected by Skeleton Key malware.</li>
+<li>SID History scan - discovers hidden privileges in domain accounts with secondary SID (SID History attribute).</li>
+<li>RiskySPNs scan - discover risky configuration of SPNs that might lead to credential theft of Domain Admins.</li>
+<li>Mystique scan - discovers risky Kerberos delegation configuration in the network.</li>
+</ol>
+<h3 style="color: #2e6c80">Quick start guide and more details are available at:</h3>
+<p><a href="https://github.com/cyberark/zBang">https://github.com/cyberark/zBang</a></p>
+<p>The tool was developed by CyberArk Labs as a quick POC, and published for the security community.</p>
+<p>zBang is a free risk assessment tool &ndash; it&rsquo;s highly recommended to mitigate the discovered threats.</p>
+<p>&nbsp;</p>
+
+
+<!--
+
+<center><b>	--------------- CYBERARK&trade; ZBANG	--------------- </b></center>
+<p>CYBERARK ZBANG MAY BE USED BY CYBERARK'S TRAINED SALES TEAMS AND CERTIFIED PARTNERS FOR PRE-SALE AND PRO-SALE DEMONSTRATION PURPOSES ONLY.</p>
+<p>Before using CyberArk ZBANG please review the following instructions, information and Software License Agreement carefully and advise the customers of the same:</p>
+<ul>
+<li>CyberArk ZBANG should only be used for its designated purpose. The scope of use should be limited to the minimum required.</li>
+<li>CyberArk ZBANG should only be used during sales/demonstration meetings between CyberArk's representatives and potential/existing customers.</li>
+<li>Once the sales/demonstration meeting is over, CyberArk ZBANG should be fully removed and deleted, without allowing the customers to make any further use of it. The customers must not, and should be advised not to, copy or share CyberArk ZBANG or use it after the meeting has ended.</li>
+<li>Any report that CyberArk ZBANG produces should be considered as confidential information of the customers, and the customers should be advised accordingly. CyberArk ZBANG may trigger alerts in security applications and tools designed to detect abnormal behavior. Therefore, Security Operations Teams may need to be alerted in advance so that the security work is coordinated and does not disrupt or distract from ordinary security monitoring or management of alerts.</li>
+</ul>
+<br/>
+<br/>
+<br/>		
+Please read this Software License Agreement carefully before using CyberArk ZBANG&trade; software product (the 'PRODUCT').<br/>
+This License Agreement covers the PRODUCT together with its associated media and printed materials, whether in electronic or in tangible form (the 'DOCUMENTATION'), as these may be made available to you during or as a result of using the PRODUCT.
+<br/>
+<br/> 
+By clicking <i>'Agree'</i> regarding the question on the EULA agreement in the Zbang execution menu, signing a hard copy of this License Agreement, or otherwise using or copying the PRODUCT, you 
+<br/><br/>
+<b>(A)</b> agree on your own behalf as an individual, or on behalf of your employer or another entity that has not previously accepted these terms, to be bound by the terms of this License Agreement;
+<br/>
+ <b>(B)</b> acknowledge that you have full authority to bind the employer or other entity on whose behalf you are acting and have read, understood and agree to comply with, and be bound by, the terms and conditions set forth below; and 
+<br/> 
+ <b>(C)</b> hereby waive any applicable rights to require an original (non- electronic) signature or delivery or retention of non- electronic records, to the extent not prohibited under applicable law.  
+ <br/><br/>
+ If you do not wish to be bound by the terms of this License Agreement, click the <i>'Decline'</i> button below or not use the PRODUCT (and do not sign a hard copy of this License Agreement), in which case the licensing process for the PRODUCT will terminate, and you will not be entitled to use the PRODUCT in any way.
+<br/> 
+<br/> 
+
+<b>	--------------- GRANT OF LICENSE ---------------</b>
+<br/> 
+CyberArk Software Inc., CyberArk Software Ltd. or one of their affiliated entities (referred to collectively herein as 'CYBERARK SOFTWARE', see the Forum And Exclusive Jurisdiction section below) grants you, a non-exclusive, non-transferable right to use the PRODUCT and the DOCUMENTATION, solely for your organization's own internal use on one personal computer or server owned, leased, or otherwise controlled or used, or on such number of personal computers, servers and locations as otherwise agreed in writing between you and CYBERARK SOFTWARE in a separate document, and subject to the payment of the applicable license fees agreed with CYBERARK SOFTWARE. 
+<br/> 
+<br/> 
+<b>	------------- RESTRICTIONS ON USE --------------</b>
+<br/> 
+
+You may not:
+<ul>
+<li>Copy or reproduce the PRODUCT and/or the DOCUMENTATION or cause any software part of the PRODUCT to execute or be loaded into the active memory or media of more than the specified number of computers referred to above at any one time.</li>
+<li>remove  or  destroy  any  copyright,  trademark  or  other  proprietary  marking  or  legends  placed  on  or  contained  in  the  PRODUCT  or  the DOCUMENTATION.</li>
+<li>assign, rent, lease, or otherwise transfer the rights granted to you under this License Agreement to any third party.</li>
+<li>reverse engineer, decompile, or disassemble the PRODUCT.</li>
+<li>use the PRODUCT  to violate any law, statute, ordinance or regulation (including but not limited to the laws and regulations governing unauthorized access to computer networks, computer fraud and abuse, data protection, privacy, or rights of workers or to introduce or propagate any unauthorized data, malware, viruses, worms, Trojan horses, spyware, worms, other malicious or harmful code).</li>
+</ul>
+<br/>
+	<b>	--------------- CONFIDENTIALITY ----------------</b>
+<br/>
+You understand and acknowledge that the PRODUCT consists of valuable proprietary and confidential information of CYBERARK SOFTWARE, the use of which is subject to terms and conditions of this License Agreement. You will take all reasonable steps necessary to ensure that the PRODUCT, the DOCUMENTATION or any confidential information relating to it is not made available or disclosed to any unauthorized person. You will indemnify and compensate CYBERARK SOFTWARE for any loss, damage, cost, expense, claim or liability incurred by CYBERARK SOFTWARE as a result of your breach of this confidentiality obligation.
+
+<br/>
+<br/>
+	<b>-- THE PRODUCT IS PROTECTED BY COPYRIGHTS AND PATENTS --</b>
+<br/>
+The PRODUCT is owned by CYBERARK SOFTWARE and its licensors and is protected by U.S. and other jurisdictions patent laws, copyright laws, trade secret laws and international treaty provisions. All title, and interest in and to the PRODUCT shall remain with CYBERARK SOFTWARE or its licensors. Therefore, you must treat the PRODUCT like any other copyrighted and protected material except that, as specified above, you may either: a) make one copy of the PRODUCT solely for backup or archival purposes, or b) transfer the PRODUCT to a single hard disk provided that you keep the original solely for backup or archival purposes. You may not copy the DOCUMENTATION, if any, accompanying the PRODUCT.
+<br/>
+<br/>
+	<b>------------- THIRD PARTY SOFTWARE -------------</b>
+<br/>
+ 
+If this PRODUCT contains any open source software components, libraries or independent modules developed by and owned by third parties ('OPEN SOURCE COMPONENTS'), a list of such OPEN SOURCE COMPONENTS will be available upon request. If applicable, such OPEN SOURCE COMPONENTS are licensed pursuant to their respective license agreements. 
+<br/>
+<br/>
+	<b>------------ DISCLAIMER OF WARRANTY ------------</b>
+<br/>
+
+You expressly acknowledge and agree that use of the PRODUCT is at your sole risk.  The PRODUCT is provided 'as is' and without warranty of any kind.  CyberArk expressly disclaims all warranties and/or conditions express or implied, including, but not limited to, the implied warranties and/or conditions of merchantability or satisfactory quality and fitness for a particular purpose.  CYBERARK SOFTWARE does not warrant that the use of the PRODUCT will be uninterrupted or error- free, or that any defects will be corrected.  No oral or written information or advice given by CYBERARK SOFTWARE shall create a warranty or in any way increase the scope of this warranty.  You assume the entire cost of all necessary servicing, repair or correction.   Because some jurisdictions do not allow the exclusion of implied warranties, some of the above exclusions may not apply to you.  This disclaimer does not limit or exclude any liability for death or personal injury caused by CYBERARK SOFTWARE's negligence.
+<br/>
+<br/>
+
+	<b>--- SCANNING AND DATA ANALYTICS CAPABILITIES ---  </b>
+<br/>
+
+You acknowledge that some software components in the PRODUCT have deep scanning and data analytics capabilities, as may be described in the applicable Documentation, and that you have received and have reviewed these materials prior to deploying the PRODUCT on your network.  
+You acknowledge that the use of this PRODUCT on your network, systems, or applications is in conformance with your corporate policies and procedures governing surveillance or analysis of network traffic for information security purposes.
+<br/>
+<br/>
+
+	<b>----------- LIMITATION OF LIABILITY ------------</b>
+<br/>
+
+IN NO EVENT SHALL CYBERARK SOFTWARE OR ITS AFFILIATES OR SUPPLIERS BE LIABLE FOR ANY INDIRECT DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR OTHER PECUNIARY LOSS) ARISING OUT OF THE USE OF OR INABILITY TO USE THE PRODUCT OR DOCUMENTATION, EVEN IF CYBERARK SOFTWARE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. CYBERARK SOFTWARE'S ENTIRE LIABILITY FOR DIRECT DAMAGES, UNDER ANY LEGAL THEORY OR BASIS, SHALL NOT EXCEED THE LICENSE FEE YOU PAID FOR THE USE OF THE PRODUCT.
+<br/>
+<br/>
+	<b>-- TERM AND TERMINATION OF THE LICENSE AGREEMENT -- </b>
+<br/>
+
+This License Agreement shall remain in full force and effect without time limitation, unless terminated by CYBERARK SOFTWARE due to your breach of any of its provisions. In case of such breach CYBERARK SOFTWARE may terminate this License Agreement immediately after providing you with a thirty (30) day prior written notice notifying you that CYBERARK SOFTWARE intends to terminate this License Agreement if you fail to remedy the breach within such 30-day period.
+If this License Agreement is terminated for any reason whatsoever, you shall immediately return the PRODUCT and Documentation to CYBERARK SOFTWARE without retaining any copy thereof.
+<br/>
+<br/>
+
+	<b>--- FREE TRIAL OR BETA VERSIONS OF THE PRODUCT ---</b>
+<ul>
+<li><b>Applicability.</b> If you are given access to, and chooses to access, any free trial or beta version of the PRODUCT (or any feature thereof) ('Beta Version'), the following terms apply to use of Beta Version notwithstanding anything to the contrary elsewhere in this License Agreement.</li>
+<li><b>License Grant.</b> CyberArk grants you, during the Beta Period (as defined below), a non-exclusive, non-transferable license (without the right to sub-license) to access and use the Beta Version for your internal evaluation purposes in accordance with the Documentation.</li>
+<li><b>Availability.</b> CyberArk makes the Beta Version available to you for a period ending on the earlier of (i) the end of the free trial or proof of concept period or beta testing period as communicated by CyberArk or specified in an order, (ii) the start date of any purchased version of such PRODUCT, or (iii) written notice of termination from CyberArk ('Beta Period').</li>
+<li><b>Warranty and Liability.</b> CyberArk provides the Beta Version 'as is' without any warranties or representations of any kind. To the extent permitted by law, CyberArk disclaims all implied warranties and representations, including, without limitation, any implied warranty of merchantability, fitness for a particular purpose and non-infringement. You assume all risks and all costs associated with its use of the Beta Version. Your sole and exclusive remedy in case of any dissatisfaction is termination of the Beta Version. As a beta version, the Beta Version is undergoing development and is likely to contain bugs, may not always perform as specified and is not suitable for use in a production environment. Thus, you are solely responsible for ascertaining the fitness of the Beta Version for your intended use for evaluations purposes, and for checking that the Beta Version is sufficiently free from error and malfunction for such use. There is no guarantee that features or functions of the current Beta Version will be available, or if available will be the same, in the general release version of the PRODUCT, and you should review the PRODUCT's features and functions before making a purchase.</li>
+<li><b>Use of Information.</b> CyberArk is not responsible or liable for the deletion of or failure to store any of Customer's data and other information maintained as part of the Beta Services during the Beta Period. All data entered into the Beta Services by or for Customer during the Beta Period may be permanently lost or inaccessible. You are solely responsible for securing and backing up such data and information. </li>
+<li><b>Maintenance.</b> CyberArk may - but will not have any obligation to - provide you certain maintenance, support, or training with respect to the Beta Version, or provide any error corrections, updates, upgrades, new versions, other modifications, or enhancements to the Beta Version.</li>
+</ul>
+<br/>
+
+	<b>------------------- TAXES --------------------</b>
+<br/>
+
+The fees and charges covered by this License Agreement are exclusive of any tariffs, duties or taxes (however designated, levied or based and whether foreign or domestic) imposed or levied on the PRODUCT or in connection with this License Agreement. You will be liable for payment of all such tariffs, duties and taxes, except for taxes imposed on CyberArk Software's net income.
+<br/>
+<br/>
+
+	<b>---------------- SEVERABILITY ----------------</b>
+<br/>
+
+Should any term or provision of this License Agreement be declared void or unenforceable by any court of competent jurisdiction, such declaration shall have no effect on the remainder of this License Agreement.
+<br/>
+<br/>
+
+	<b>----------------- NO WAIVER ------------------</b>
+<br/>
+
+The failure of either party to enforce any rights granted to it hereunder or to take action against the other party in the event of any breach hereunder shall not be deemed a waiver by that party as to subsequent enforcement of rights or subsequent actions in the event of future breaches.
+<br/>
+<br/>
+
+	<b>--------------- EXPORT CONTROL ---------------</b>
+<br/>
+
+If the PRODUCT was purchased in the U.S., its exportation is subject to compliance with the U.S. Export Administration Act, as amended, and the rules and regulations promulgated from time to time there under, and you agree not to knowingly export or re-export the PRODUCT or any part thereof directly or indirectly, without first obtaining required permission to do so from the United States Office of Export Administration and other appropriate governmental agencies.
+If the PRODUCT was purchased outside the U.S., its exportation may be subject to the laws and regulations of the place of purchase, and you assume the entire liability and obligation to comply with their provisions.
+This section is not intended to grant you any rights in addition to those set forth in this License Agreement.
+<br/>
+<br/>
+
+	<b>------ FORUM AND EXCLUSIVE JURISDICTION ------</b>
+<br/>
+
+If the PRODUCT was purchased in the U.S. or Canada, the contracting party to this License Agreement is CyberArk Software Inc., and it shall be governed by and construed in accordance with the laws of the Commonwealth of Massachusetts, not including its law of conflicts of laws. You irrevocably consent to the exclusive jurisdiction of the United States District Court for the District of Massachusetts and any court of the Commonwealth of Massachusetts which sits in the City of Boston, over any action, suit or proceeding arising hereunder.
+If the PRODUCT was purchased outside U.S. or Canada, the contracting party to this License Agreement is CyberArk Software Ltd., and it shall be governed by and construed in accordance with the laws of the state of Israel, not including its law of conflicts of laws, and you irrevocably consent to the exclusive jurisdiction of the competent court which sits in Tel Aviv, Israel, over any action, suit or proceeding arising hereunder.
+<br/>
+<br/>
+
+	<b>------------- ENTIRE AGREEMENT ---------------</b>
+<br/>
+
+This License Agreement represents the complete and exclusive terms and conditions under which this PRODUCT is Licensed to you by CYBERARK SOFTWARE, and it supersedes all prior  agreements and representations between the parties, unless specifically stated otherwise. This License Agreement may only be amended by a written instrument specifically intended for this sole purpose and signed by the authorized representatives of both parties.
+<br/>
+<br/>
+
+	************************************************
+<br/>
+<br/>
+
+Should you have any questions concerning this License Agreement, or if you desire to contact CYBERARK SOFTWARE for any reason, please e-mail us at: info@cyberark.com
+
+
+-->
+
+
+</body>

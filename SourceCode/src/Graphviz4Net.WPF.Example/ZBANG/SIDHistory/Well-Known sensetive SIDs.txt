@@ -1,0 +1,18 @@
+Link - https://support.microsoft.com/en-us/kb/243330
+
+
+Administrator			S-1-5-21domain-500
+KRBTGT				S-1-5-21domain-502
+Enterprise Domain Controllers	S-1-5-9
+Domain Admins			S-1-5-21domain-512
+Domain Controllers		S-1-5-21domain-516
+Schema Admins			S-1-5-21domain-518
+Enterprise Admins		S-1-5-21domain-519
+Group Policy Creator Owners	S-1-5-21domain-520
+Administrators			S-1-5-32-544
+Account Operators		S-1-5-32-548
+Server Operators		S-1-5-32-549
+Print Operators			S-1-5-32-550
+Backup Operators		S-1-5-32-551
+Replicators			S-1-5-32-552
+Event Log Readers		S-1-5-32-573
