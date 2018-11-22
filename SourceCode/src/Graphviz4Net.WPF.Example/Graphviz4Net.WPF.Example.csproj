@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F820EB5A-BBFD-46AD-9EEB-3DFE8D1D7BE7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Graphviz4Net.WPF.Example</RootNamespace>
+    <AssemblyName>Graphviz4Net.WPF.Example</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Graphviz4Net.WPF.Example.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>flash_bang.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\Graphviz4Net.Core\bin\Debug\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="FileHelpers, Version=3.2.7.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\FileHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Graphviz4Net">
+      <HintPath>..\Graphviz4Net.WPF\bin\Debug\Graphviz4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Graphviz4Net.WPF">
+      <HintPath>..\Graphviz4Net.WPF\bin\Debug\Graphviz4Net.WPF.dll</HintPath>
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\3.0\System.Management.Automation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFExtensions, Version=1.0.6553.24403, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\WPFExtensions\WPFExtensions\bin\Debug\WPFExtensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="HtmlCssParser.cs" />
+    <Compile Include="HtmlFromXamlConverter.cs" />
+    <Compile Include="HtmlLexicalAnalyzer.cs" />
+    <Compile Include="HtmlParser.cs" />
+    <Compile Include="HtmlSchema.cs" />
+    <Compile Include="HtmlTokenType.cs" />
+    <Compile Include="HtmlToXamlConverter.cs" />
+    <Compile Include="LicenseWindow.xaml.cs">
+      <DependentUpon>LicenseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mystique.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProgressWindow.xaml.cs">
+      <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="riskySPNs.cs" />
+    <Compile Include="selectTogglesForms.xaml.cs">
+      <DependentUpon>selectTogglesForms.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SIDHistory.cs" />
+    <Compile Include="domainSelection.xaml.cs">
+      <DependentUpon>domainSelection.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ACLightWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LicenseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ACLightWindow.xaml.cs">
+      <DependentUpon>ACLightWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ProgressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="domainSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="selectTogglesForms.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Graphviz4Net.Core\Graphviz4Net.Core.csproj">
+      <Project>{903CE537-66BF-4867-BE5C-DB8958F5E1B3}</Project>
+      <Name>Graphviz4Net.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Avatars\avatar1.jpg" />
+    <Resource Include="Avatars\avatar2.gif" />
+    <Resource Include="Avatars\avatar3.jpg" />
+    <Resource Include="Avatars\avatarAnon.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Avatars\Gears.png" />
+    <Resource Include="Avatars\SysAdmin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Avatars\Gears.jpg" />
+    <Resource Include="Avatars\Servers.png" />
+    <Resource Include="Avatars\Unix and Linux.png" />
+    <Resource Include="Avatars\Virtual Servers.png" />
+    <Resource Include="Avatars\Web Portal.png" />
+    <Resource Include="Avatars\Websites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Avatars\Desktop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Antlr3.Runtime.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\FileHelpers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Graphviz4Net.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Graphviz4Net.WPF.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\WPFExtensions.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\aetosdios.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\aetosdios_trans.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\blog-illus_password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bullet_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bullet_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bullet_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bullet_grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bullet_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bullet_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\eng-bad-password-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\password-protection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\skeletonkey.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\skeletonkey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\userblue_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Bug.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Avatars\Bug.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo-wireframe-trans.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo-trans.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Logo_color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Key.png" />
+    <Resource Include="Images\Padlock.png" />
+    <Resource Include="Images\Policy Merger.png" />
+    <Resource Include="Images\Policy.png" />
+    <Resource Include="Images\Recording.png" />
+    <Resource Include="Images\Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\questionmark.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\flash_bang1600.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ic-domain.png" />
+    <Resource Include="Images\ic-group-blue.png" />
+    <Resource Include="Images\ic-group-ok-green.png" />
+    <Resource Include="Images\ic-user-blue.png" />
+    <Resource Include="Images\ic-user-red-reject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ic-target.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dc-clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dc-clean-noback.png" />
+    <Resource Include="Images\ic-domain-noback.png" />
+    <Resource Include="Images\ic-group-blue-noback.png" />
+    <Resource Include="Images\ic-group-ok-green-noback.png" />
+    <Resource Include="Images\ic-target-noback.png" />
+    <Resource Include="Images\ic-user-blue-noback.png" />
+    <Resource Include="Images\ic-user-red-reject-noback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\target-noback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Unmanaged-priveleged-user-noback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Attacker.png" />
+    <Resource Include="Images\Endpoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\generic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Attacker_redback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clerk.png" />
+    <Resource Include="Images\flashlight.png" />
+    <Resource Include="Images\role-playing-game.png" />
+    <Resource Include="Images\theater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="flash_bang1600.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="flash_bang1600.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="flash_bang.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\machine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\operating-system.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logoSeparator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\unnamed-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\New target.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\operating-system-unconstrained.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\user_blue_cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logoSeparator_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\flash_bang_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\new-group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Avatars\gears-inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help-selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\computer with alert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\computer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Bang2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ID-history-blue.png" />
+    <Resource Include="Images\ID-history-red.png" />
+    <Resource Include="Images\ID-privileged.png" />
+    <Resource Include="Images\ID-privileged2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ID.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ic-show-thumbnail.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

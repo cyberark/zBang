@@ -1,0 +1,631 @@
+﻿<Window x:Class="Graphviz4Net.WPF.Example.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:i="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:local="clr-namespace:Graphviz4Net.WPF.Example"
+        xmlns:Controls="clr-namespace:WPFExtensions.Controls;assembly=WPFExtensions" 
+        xmlns:Example="clr-namespace:Graphviz4Net.WPF.Example" 
+        xmlns:WPF="clr-namespace:Graphviz4Net.WPF;assembly=Graphviz4Net.WPF" 
+        xmlns:ViewModels="clr-namespace:Graphviz4Net.WPF.ViewModels;assembly=Graphviz4Net.WPF" 
+        Icon="./Images/flash_bang1600.png"
+        Closing="DataWindow_Closing"  
+        Title="Network Visualization" 
+        Height="{Binding WindowHeight, Mode=OneWayToSource}" 
+        Width="1250" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
+    <!--
+        "{Binding WindowWidth, Mode=OneWayToSource}">
+    -->
+    <Window.Resources>
+
+        <!-- P E R S O N -->
+        <DataTemplate DataType="{x:Type Example:Person}">
+            <Border BorderBrush="Black" BorderThickness="1" Padding="0" CornerRadius="5" Background="{Binding BackColor}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MaxHeight="{Binding maxHeight}">
+                <Border.ToolTip>
+                    <ToolTip Visibility="{Binding toolTipEnabled}">
+                        <StackPanel Background="Honeydew" MinHeight="200" Width="200">
+                            <StackPanel Background="BurlyWood" MinHeight="30" Width="200" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                <Image VerticalAlignment="Top"  Width="30" MinHeight="30" Source="{Binding toolTipImage}"  Name="image1" />
+                                <TextBlock FontFamily="Aharoni" FontSize="24" FontWeight="Bold" Foreground="Black" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="30" HorizontalAlignment="Right" Width="143">
+                            <Run FontFamily="Andalus" FontSize="18" FontWeight="Normal" Text="{Binding toolTipHeader}"/>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Width="200" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                <TextBlock TextWrapping="Wrap" Foreground="#FFF9F4F4" TextAlignment="Left" Background="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="181" MinHeight="98">
+                          <Run FontFamily="Verdana" FontSize="11" FontWeight="Normal" Foreground="#FF151514"
+                               Text="{Binding toolTipText}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </ToolTip>
+                </Border.ToolTip>
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding DoubleClickCommand}"/>
+                    <!-- MouseBinding MouseAction="LeftClick" Command="{Binding MouseOverCard}"/ -->
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding PersonClickCommand}"/>
+                </Border.InputBindings>
+                <Border.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger Property="Border.IsMouseOver" Value="True">
+                                <Setter Property="Border.Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="2" Color="#BBBBFF" 
+		                                                    Opacity="0.4" Direction="315"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Avatar}" Width="32" Height="32" Margin="5" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                        <Image Source="{Binding ShowPictureImage}" Width="16" Height="16" Margin="13,3" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Left" Cursor="Hand" MouseUp="magnifyingGlassClicked" Visibility="{ Binding picPresent}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="2">
+                        <TextBlock Text="{Binding ShowName}" MinWidth="130"/>
+                        <TextBlock FontWeight="{Binding emailWeight}" Text="{Binding Email}"/>
+                        <Separator Margin="0, 5, 0, 5"/>
+                        <CheckBox x:Name="myCheckbox" 
+                            Command="{Binding CheckboxClickedCommand}"
+                            CommandParameter="{Binding IsChecked}"
+                            Content="Is secured ?"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,0"
+                            VerticalAlignment="Top"
+                            IsChecked="{Binding checkBoxState}"
+                            Visibility="{ Binding isBoxVisible}"/>
+                        <!--TextBlock><Underline>Send a Message</Underline></>
+                        <Button Name="butt" Command="{Binding RemoveCommand}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <TextBlock><Underline>More Details</Underline></TextBlock>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button -->
+                    </StackPanel>
+                </StackPanel>
+
+
+                <!-- StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding Avatar}" Width="32" Height="32" Margin="5" VerticalAlignment="Top"/>
+                    <StackPanel Orientation="Vertical" Margin="2,5">
+                        <Button Name="butt" Command="{Binding RemoveCommand}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <TextBlock><Underline>More Details</Underline></TextBlock>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Separator Margin="-40, 25, 0, 25"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="-110,50">
+                        <TextBlock Text="{Binding ShowName}"/>
+                        <TextBlock Text="{Binding Email}"/>
+                    </StackPanel>
+                </-->
+            </Border>
+        </DataTemplate>
+
+        <!--   M A C H I N E   -->
+        <DataTemplate DataType="{x:Type Example:Machine}">
+            <Border BorderBrush="Transparent" BorderThickness="2" Padding="0" CornerRadius="1" Background="Transparent">
+                <Border.ToolTip>
+                    <ToolTip Visibility="{Binding toolTipEnabled}">
+                        <StackPanel Background="Honeydew" MinHeight="200" Width="200">
+                            <StackPanel Background="BurlyWood" MinHeight="30" Width="200" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                <Image VerticalAlignment="Top"  Width="30" MinHeight="30" Source="{Binding toolTipImage}"  Name="image1" />
+                                <TextBlock FontFamily="Aharoni" FontSize="24" FontWeight="Bold" Foreground="Black" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="30" HorizontalAlignment="Right" Width="143">
+                            <Run FontFamily="Andalus" FontSize="18" FontWeight="Normal" Text="{Binding toolTipHeader}"/>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Width="200" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                <TextBlock TextWrapping="Wrap" Foreground="#FFF9F4F4" TextAlignment="Left" Background="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="181" MinHeight="98">
+                          <Run FontFamily="Verdana" FontSize="11" FontWeight="Normal" Foreground="#FF151514"
+                               Text="{Binding toolTipText}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </ToolTip>
+                </Border.ToolTip>
+                <Border.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger Property="Border.IsMouseOver" Value="True">
+                                <Setter Property="Border.Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="2" Color="#BBBBBB" 
+		                                                    Opacity="0.3" Direction="315"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel Orientation="Vertical">
+                    <Image Source="{Binding Avatar}" Width="90" Height="64" Margin="0" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center"  Margin="0">
+                        <!--TextBlock Text="{Binding Name}" FontSize="8" Visibility="{Binding NameVisibile}"/-->
+                        <TextBlock Text="{Binding showName}" FontSize="8" Visibility="Visible"/>
+                        <!-- TextBlock Text="{Binding Email}"/>
+                        <Separator Margin="0, 5, 0, 5"/ -->
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <!--   L E G E N D   -->
+        <DataTemplate DataType="{x:Type Example:Legend}">
+            <Border BorderBrush="Transparent" BorderThickness="0" Padding="0" CornerRadius="1" Background="Transparent">
+                <Border.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <Trigger Property="Border.IsMouseOver" Value="True">
+                                <Setter Property="Border.Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="2" Color="#BBBBBB" 
+		                                                    Opacity="0.3" Direction="315"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding Avatar}" Width="24" Height="24" Margin="3" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center"  Margin="1,8">
+                        <TextBlock Text="{Binding Name}"/>
+                        <!-- TextBlock Text="{Binding Email}"/>
+                        <Separator Margin="0, 5, 0, 5"/ -->
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+
+
+        <!-- DIAMOND ARROW -->
+        <DataTemplate DataType="{x:Type Example:DiamondArrow}">
+            <Canvas Width="6" Height="11">
+                <Polygon Points="3,0 6,5 3,10 0,5" Stroke="Black" StrokeThickness="1" Fill="Black"/>
+            </Canvas>
+        </DataTemplate>
+
+        <!-- ARROW -->
+        <DataTemplate DataType="{x:Type Example:Arrow}">
+            <Path Data="M 0,0 L 20,0 L 10,10 L 0,0" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeThickness}" Fill="{Binding Stroke}">
+            </Path>
+        </DataTemplate>
+
+        <!-- Blind Arraw NS 3011 -->
+        <DataTemplate DataType="{x:Type Example:BlindArrow}">
+            <Path Data="M 0,0 L 0,0 L 0,10 L 0,0" Stroke="White" StrokeThickness="0">
+            </Path>
+        </DataTemplate>
+
+        <!-- Set UseContentPresenterForAllElements of GraphLayout to true -->
+        <DataTemplate DataType="{x:Type ViewModels:EdgeLabelViewModel}">
+            <StackPanel>
+                <TextBlock Text="{Binding Path=Label}" FontFamily="Verdana" FontSize="11" FontWeight="Normal" MouseDown="labelMouseDown" Foreground="{Binding labelColor}" ToolTip="{Binding labelToolTip}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModels:BorderViewModel}">
+            <Border BorderBrush="{Binding borderColor}"
+                    BorderThickness="{Binding borderThickness}"
+                    CornerRadius="10"
+                    Padding="10, 0, 0, 0">
+                <TextBlock Text="{Binding Path=Label}" FontStyle="Italic"/>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModels:EdgeArrowLabelViewModel}">
+            <TextBlock Text="{Binding Path=Label}" Background="White"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModels:EdgeViewModel}">
+            <Path Data="{Binding Data}" Stroke="{Binding Edge.edgeColor}" StrokeThickness="{Binding Edge.edgeStrokeThickness}" ToolTip="{Binding Edge.Label}">
+                <Path.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.0" ShadowDepth="4"/>
+                </Path.Effect>
+            </Path>
+        </DataTemplate>
+    </Window.Resources>
+
+
+    <Grid Name="grid1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1200*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="51"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="47"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Background="#EEEEEE" Margin="0,0,0,74" Grid.ColumnSpan="2">
+            <StackPanel Margin="50, 10, 10, 10">
+                <TextBlock FontSize="14" Margin="0, 0, 0 , 10">Add a new vertex:</TextBlock>
+                <TextBox Text="{Binding NewPersonName}" Width="150" Margin="0, 0, 0, 10"/>
+                <Button x:Name="AddNewPerson">Add new person</Button>
+            </StackPanel>
+
+            <StackPanel Margin="50, 10, 10, 10">
+                <TextBlock FontSize="14" Margin="0, 0, 0 , 10">Add a new edge:</TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 10">
+                    <ComboBox x:Name="NewEdgeStart" ItemsSource="{Binding PersonNames}" Margin="0, 0, 10, 0" Width="100"/>
+                    <ComboBox x:Name="NewEdgeEnd" ItemsSource="{Binding PersonNames}" Width="100"/>
+                </StackPanel>
+                <Grid Margin="0, 0, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0">Label:</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewEdgeLabel}"></TextBox>
+                </Grid>
+                <Button x:Name="AddNewEdge">Add new link</Button>
+            </StackPanel>
+
+            <StackPanel Margin="75, 10, 0, 10" Width="200">
+                <TextBlock FontSize="14" Margin="0, 0, 0 , 10">Update a person:</TextBlock>
+                <ComboBox x:Name="UpdatePersonName" ItemsSource="{Binding PersonNames}" Margin="0, 0, 0 , 10"/>
+                <Grid Margin="0, 0, 0, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0">New name:</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding UpdatePersonNewName}"></TextBox>
+                </Grid>
+                <Button Margin="0, 0, 0, 10" x:Name="UpdatePerson">Update</Button>
+            </StackPanel>
+        </StackPanel>
+-->
+        <StackPanel i:Name="stackPanelButtons" Orientation="Horizontal" Margin="0,5,5,0" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="Transparent">
+            <ToggleButton x:Name="toggleACLight" HorizontalAlignment="Left" Margin="6,0" Padding="0" Width="100" Height="90" Checked="ToggleButton_Checked" Unchecked="ToggleButton_UnChecked">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Foreground"  Value="Gray"></Setter>
+                        <Setter Property="BorderBrush">
+                            <Setter.Value>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                                    <GradientStop Color="#FF718597" Offset="0.375"/>
+                                    <GradientStop Color="#FF617584" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFAFAFAF" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                                <Setter Property="Foreground" Value="Red" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+                <StackPanel Orientation="Vertical" Height="120">
+                    <Image Name="imgACLight" Stretch="Fill" Height="50" VerticalAlignment="Top"/>
+                    <Label Padding="0" HorizontalAlignment="Center">ACLight</Label>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton x:Name="toggleSkeleton" HorizontalAlignment="Left" Margin="3,0" Padding="0" Width="100" Height="90" Checked="ToggleButton_Checked" Unchecked="ToggleButton_UnChecked">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Foreground"  Value="Gray"></Setter>
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFAFAFAF" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                                <Setter Property="Foreground" Value="Red" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+                <StackPanel Orientation="Vertical" Height="75">
+                    <Image Name="imgSkeleton" Stretch="Fill" Height="50" VerticalAlignment="Top"/>
+                    <Label Padding="0" HorizontalAlignment="Center">Skeleton Key</Label>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton x:Name="toggleSIDHistory" HorizontalAlignment="Left" Margin="3,0" Padding="0" Width="100" Height="90" Checked="ToggleButton_Checked" Unchecked="ToggleButton_UnChecked">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Foreground"  Value="Gray"></Setter>
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFAFAFAF" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                                <Setter Property="Foreground" Value="Red" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+                <StackPanel Orientation="Vertical" Height="75">
+                    <Image Name="imgSID" Stretch="Fill" Height="50" VerticalAlignment="Top"/>
+                    <Label Padding="0" HorizontalAlignment="Center">SID History</Label>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton x:Name="toggleRisky" HorizontalAlignment="Left" Margin="3,0" Padding="0" Width="100" Height="90" Checked="ToggleButton_Checked" Unchecked="ToggleButton_UnChecked">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Foreground"  Value="Gray"></Setter>
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFAFAFAF" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                                <Setter Property="Foreground" Value="Red" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+                <StackPanel Orientation="Vertical" Height="75">
+                    <Image Name="imgRisky" Stretch="Fill" Height="50" VerticalAlignment="Top"/>
+                    <Label Padding="0" HorizontalAlignment="Center">Risky SPNs</Label>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton x:Name="toggleMystique" HorizontalAlignment="Left" Margin="3,0" Padding="0" Width="100" Height="90" Checked="ToggleButton_Checked" Unchecked="ToggleButton_UnChecked">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Foreground"  Value="Gray"></Setter>
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFBFBFBF" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                                <Setter Property="Foreground" Value="Red" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+                <StackPanel Orientation="Vertical" Height="75">
+                    <Image Name="imgMistique" Stretch="Fill" Height="50" VerticalAlignment="Top"/>
+                    <Label Padding="0" HorizontalAlignment="Center">Mystique</Label>
+                </StackPanel>
+            </ToggleButton>
+            <Button i:Name="LaunchZbang" Margin="50,25" Width="50" Height="50" IsEnabled="False" Click="launchPowershellButton_clicked" Content="Launch"/>
+            <Button i:Name="Launch" Margin="0,25" Width="50" Height="50" IsEnabled="False" Click="launchButton_clicked" Content="Reload"/>
+            <Button i:Name="ExportButton" Margin="200,0, 0, 0" Width="50" Height="50" IsEnabled="True" Click="Export_clicked" Content="Export"/>
+            <Button i:Name="ImportButton" Margin="10,0" Width="50" Height="50" IsEnabled="True" Click="Import_clicked" Content="Import"/>
+
+
+            <!--ToggleButton x:Name="toggleEasy" HorizontalAlignment="Left" Margin="3,0" Padding="0" Width="100" Height="90" Checked="ToggleButton_Checked" Unchecked="ToggleButton_UnChecked">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Foreground"  Value="Gray"></Setter>
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFBFBFBF" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                                <Setter Property="Foreground" Value="Red" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+                <StackPanel Orientation="Vertical" Height="75">
+                    <Image Source="c:\Temp\icons and images\password-protection.png" Stretch="Fill" Height="50" VerticalAlignment="Top"/>
+                    <Label Padding="0" HorizontalAlignment="Center">Easy Peasy</Label>
+                </StackPanel>
+            </-->
+        </StackPanel>
+
+        <Border Background="#021737" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+            <Image i:Name="imageLogo" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Top" Margin="0,6"/>
+        </Border>
+
+        <!-- TAB CONTROL -->
+        <TabControl x:Name="tabControl" Grid.Column="0" Grid.Row="2" SelectionChanged="TabControl_SelectionChanged" Background="Transparent" BorderBrush="{i:Null}">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabControl}">
+                    <Setter Property="Background" Value="LightGreen"></Setter>
+
+                </Style>
+            </TabControl.Resources>
+            <TabItem Name="ACLLight" MouseLeftButtonDown="tabItemACL_Clicked" Margin="-2,-2,-2,-19">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="bulletACL" Height="24" Width="24" Stretch="Fill"/>
+                        <TextBlock Text="ACLight Results" Foreground="Black" FontSize="14" Padding="5,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem Name="SkeletonItem" MouseLeftButtonDown="tabItemSkeleton_Clicked" Margin="-2,-2,-2,-19">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="bulletSkeleton"  Height="24" Width="24" Stretch="Fill"/>
+                        <TextBlock Text="Skeleton Key Results" Foreground="Black" FontSize="14" Padding="5,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Label Content="Content goes here..." />
+            </TabItem>
+            <TabItem Name="SIDHistoryItem" MouseLeftButtonDown="tabItemSID_Clicked" Margin="-2,-2,-2,-19">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="bulletSID" Height="24" Width="24" Stretch="Fill"/>
+                        <TextBlock Text="SID History Results" Foreground="Black" FontSize="14" Padding="5,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Label Content="Content goes here..." />
+            </TabItem>
+            <TabItem Name="SPNItem" MouseLeftButtonDown="tabItemSPN_Clicked" Margin="-2,-2,-2,-19">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="bulletSPN" Height="24" Width="24" Stretch="Fill"/>
+                        <TextBlock Text="RiskySPN Results" FontSize="14" Foreground="Black" Padding="5,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem Name="MystiqueItem" MouseLeftButtonDown="tabItemMystique_Clicked" Margin="-2,-2,-2,-19">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="bulletMystique" Height="24" Width="24" Stretch="Fill"/>
+                        <TextBlock Text="Mystique Results" FontSize="14" Foreground="Black" Padding="5,0"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <!--TabItem Name="EasyPeasy" MouseLeftButtonDown="tabItemEasy_Clicked">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="C:/temp/icons and images/bullet_black.png" Height="24" Width="24" Stretch="Fill"/>
+                        <TextBlock Text="EasyPeasy Results" Foreground="Black" />
+                    </StackPanel>
+                </TabItem.Header>
+            </-->
+        </TabControl>
+
+        <Controls:ZoomControl Name="zoomControl" Grid.Column="0" Grid.Row="3" Margin="0,0,0,22">
+            <Controls:ZoomControl.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="showmach" Header="Show Legend" Click="menuShowMachines"/>
+                    <MenuItem Header="Refresh" Click="menuRefresh"/>
+                    <Separator />
+                    <MenuItem Header="Exit" />
+                </ContextMenu>
+            </Controls:ZoomControl.ContextMenu>
+
+            <WPF:GraphLayout 
+                UseContentPresenterForAllElements="True"
+                LogGraphvizOutput="True"
+                Graph="{Binding Graph}"
+                x:Name="GraphLayout" OnLayoutUpdated="OnGraphLayoutUpdated">
+                <WPF:GraphLayout.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="showmach2" Header="Show Legend" Click="menuShowMachines"/>
+                        <MenuItem Header="Refresh" Click="menuRefresh"/>
+                        <Separator />
+                        <MenuItem Header="Exit" />
+                    </ContextMenu>
+                </WPF:GraphLayout.ContextMenu>
+
+                <WPF:GraphLayout.Resources>
+                    <Style TargetType="ProgressBar">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ProgressBar">
+                                    <TextBlock Foreground="Black">Generating the layout...</TextBlock>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </WPF:GraphLayout.Resources>
+            </WPF:GraphLayout>
+        </Controls:ZoomControl>
+        <Button Name="backButton" Click="GoBackButton" Grid.Column="0" Grid.Row="3" Width="55" VerticalAlignment="Top" Margin="18,4,0,0" HorizontalAlignment="Left" Visibility="Hidden" Height="36">
+            <!--Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Image Name="imgArrowLeft" Width="32" Height="32" Stretch="Fill" />
+                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center">Back</TextBlock>
+                    </Grid>
+                </ControlTemplate>
+            </-->
+            <Image Name="imgArrowLeft" Width="32" Height="32" Stretch="Fill"/>
+        </Button>
+        <!-- ProgressBar Name="Progress" Grid.ColumnSpan="3" Grid.Row="2"  Height="25" Minimum="0" Maximum="100" Visibility="Hidden"/-->
+        <TextBlock Name="PleaseWaitText" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" Margin="579,34,579,1" Height="16" Width="74">PLEASE WAIT!</TextBlock>
+        <!-- WebBrowser Name="aclWebBrowser" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" Height="800" Margin="0,0" VerticalAlignment="Top" Width="500" Visibility="Hidden"/-->
+        <TextBox Name="TextBox" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
+            Text="&lt;p&gt;This is a test of HTML &lt;b&gt;Bold&lt;/b&gt; and &lt;i&gt;Italic&lt;/i&gt;&lt;/p&gt;&lt;p&gt; &lt;a href=&quot;http://www.microsoft.com&quot; &gt;The Link&lt;/a&gt;&lt;/p&gt;" Margin="0,32,0,1" Height="18" />
+        <RichTextBox Name="rtbACL" Grid.Column="0" Grid.Row="3" local:HtmlRichTextBoxBehavior.Text="{Binding ElementName=TextBox, Path=Text}" BorderThickness="2" Background="Transparent" HorizontalAlignment="Right" Height="850" Margin="0,0,0,-394" VerticalAlignment="Top" Width="500" Visibility="Hidden" IsDocumentEnabled="True"/>
+
+        <!--Border Name="borderACLightQ" BorderThickness="2" BorderBrush="Black" Background="LawnGreen" Width="350" Height="200" Grid.RowSpan="3" Visibility="Hidden">
+            <StackPanel HorizontalAlignment="Left">
+                <TextBlock TextWrapping="Wrap" FontSize="16">ACLight discovered a number of domains to be scanned. This may be a long process. Would you like to scan all domains or select from a list?</TextBlock>
+                <Button HorizontalAlignment="Center" Width="100" Height="50">Scan All</Button>
+                <Button HorizontalAlignment="Center" Width="100" Height="50">Select From List</Button>
+            </StackPanel>
+        </-->
+        <Button i:Name="exportButt" Grid.RowSpan="3" VerticalAlignment="Top" HorizontalAlignment="Right" Width="60" Margin="0,10,94,0" Height="50" IsEnabled="True" Click="Export_clicked" Content="Export"/>
+        <Button i:Name="Help" Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,24,0" Width="50" Height="50" BorderBrush="transparent" Background="Transparent" IsEnabled="True" Click="helpButton_clicked">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="./Images/help-selected.png" Width="46" Height="46" HorizontalAlignment="Center"/>
+                <!--TextBlock Text="Blablabla" VerticalAlignment="Center" /-->
+            </StackPanel>
+
+        </Button>
+        <Button i:Name="relaunchButt" Grid.RowSpan="3" VerticalAlignment="Top" HorizontalAlignment="Right" Width="60" Margin="0,10,175,0" Height="50" IsEnabled="True" Click="relaunch_clicked" Content="Relaunch"/>
+
+        <Popup Name="popupPicture" IsOpen="False" Grid.Row="2" Grid.RowSpan="3" 
+                PlacementTarget="{Binding placementTarget}"              
+                Placement="MousePoint"
+                AllowsTransparency="True"  
+                PopupAnimation="Scroll"
+                HorizontalOffset="10"  
+                VerticalOffset="10" OpacityMask="#FFD63131">
+            <Canvas Width="200" Height="300" Background="Transparent" Margin="150">
+                <Canvas.RenderTransform>
+                    <RotateTransform x:Name="theTransform" />
+                </Canvas.RenderTransform>
+                <Image Name="imgPopup" Stretch="Fill">  
+                </Image>
+            </Canvas>
+        </Popup>
+
+
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="bottom" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="4" Margin="0,306,0,0">
+            <StatusBar Height="22">
+                <StatusBarItem>
+                    <TextBlock Name="lblCursorPosition" Text="{Binding statusBarText}" />
+                </StatusBarItem>
+            </StatusBar>
+        </StackPanel>
+
+
+    </Grid>
+</Window>

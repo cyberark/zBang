@@ -1,0 +1,19 @@
+﻿<Window x:Class="Graphviz4Net.WPF.Example.ProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Graphviz4Net.WPF.Example"
+        mc:Ignorable="d"
+        Title="ProgressWindow" Height="483.511" Width="700.246" Topmost="False" WindowStyle="None">
+    <Grid Margin="0,0,-52,192">
+        <Label x:Name="label1" Content="Label" HorizontalAlignment="Center" Height="27" Margin="1,0,0,-27" VerticalAlignment="Top" Width="389" RenderTransformOrigin="0.506,-0.595"/>
+        <ProgressBar x:Name="progressBar1" HorizontalAlignment="Left" Height="26" Margin="0,28,0,0" VerticalAlignment="Top" Width="691" RenderTransformOrigin="0.494,-0.482"/>
+        <Border BorderBrush="Black" BorderThickness="1" Background ="Black" HorizontalAlignment="Left" Height="203" Margin="1,88,0,-193" VerticalAlignment="Top" Width="388">
+            <ScrollViewer Name="myScroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right" Width="689" Height="486" VerticalAlignment="Bottom" Margin="-1,-99,-302,-186">
+                <TextBox x:Name="textBlockPowershell" VerticalAlignment="Bottom" FontSize="14" Background="Black" TextWrapping="WrapWithOverflow" Foreground="LightGreen" Text="Zbang Launched" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="690" Height="424" RenderTransformOrigin="0.508,0.21"/>
+            </ScrollViewer>
+        </Border>
+
+    </Grid>
+</Window>
