@@ -1,0 +1,6 @@
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.Core\bin\Release\Graphviz4Net.dll
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.Core\bin\Release\Graphviz4Net.pdb
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.Core\bin\Release\Antlr3.Runtime.dll
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.Core\obj\Release\Graphviz4Net.dll
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.Core\obj\Release\Graphviz4Net.pdb
+C:\Users\nimrod\Documents\Visual Studio 2015\Projects\graphviz4net_b19bb0cdc8c6\src\Graphviz4Net.Core\obj\Release\Graphviz4Net.Core.csprojResolveAssemblyReference.cache
