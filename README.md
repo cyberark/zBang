@@ -101,5 +101,6 @@ When you intend to scan large networks with multiple trust-connected domains, it
 
 # Authors
 zBang was developed by CyberArk Labs as a quick and dirty POC intended to help security teams worldwide. Feedback and comments are welcome.  
-Main points of contact:  
+  
+**Main points of contact:**  
 Asaf Hecht ([@Hechtov](https://twitter.com/Hechtov)), Nimrod Stoler ([@n1mr0d5](https://twitter.com/n1mr0d5)) and Lavi Lazarovitz ([@\_\_Curi05ity\_\_](https://twitter.com/__Curi05ity__))  
