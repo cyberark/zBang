@@ -44,7 +44,7 @@ zBang tool comes with built-in initiating demo data; you can view the results of
 6.	The results zip file will be in the same folder of zBang and will have a unique name with the time and the date of the scans. You can also import previous results into the zBang GUI without the need of rerunning the scans.  
 To import previous results, click “Import” in the zBang’s opening screen.  
   
-# Go Over zBang Results:
+# Go Over zBang Results
 ### A.  ACLight scan:
   
 ![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/aclight%20result.png "ACLight results") 
