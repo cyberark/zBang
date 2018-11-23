@@ -95,7 +95,7 @@ This scenario is very suspicious and you should check this account and investiga
   
 ![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/SIDhistory.png "SID History scan results")  
   
-* For a visualization convenience, if a large number of accounts with non-privileged SID history are present (more than ten), they will be filtered out from the display, as those accounts are less sensitive.  
+\* For a visualization convenience, if a large number of accounts with non-privileged SID history are present (more than ten), they will be filtered out from the display, as those accounts are less sensitive.  
 5.	For manual examination of the scan results, unzip the saved zBang results file and check csv file:  
 “[Path of the zBang’s unzipped results file]\SIDHistory\Results\Report.csv".
 6.	More details on abusing SID History are available in the blog post 
