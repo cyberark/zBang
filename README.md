@@ -43,7 +43,8 @@ zBang tool comes with built-in initiating demo data; you can view the results of
 To import previous results, click “Import” in the zBang’s opening screen.  
   
 # Go Over zBang Results:
-a.	ACLight scan:
+### A.  ACLight scan:
+  
 ![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/aclight%20result.png "ACLight results")  
 i.	Choose the domain you have scanned.
 ii.	You will see a list of the most privileged accounts that were discovered.
@@ -68,7 +69,8 @@ ix.	On each of the discovered privileged accounts:
 3.	Secure the account. After validating these three steps, you can mark the account with a “V” in the small selection box, turning it green on the interface.
 x.	The goal is to make all the accounts marked as “secured” with the green color.
   
-b.	Skeleton Key scan
+### B.  Skeleton Key scan
+  
 i.	In the scan page (click the relevant bookmark in the above section), there will be a list of all the scanned DCs. 
 ii.	Make sure all of them are clean and marked with green.
 iii.	If the scan finds a potential infected DC, it is crucial to initiate an investigation process.
@@ -76,7 +78,7 @@ iii.	If the scan finds a potential infected DC, it is crucial to initiate an inv
 iv.	More details on Skeleton Key malware are available in the blog post
 “Active Directory Domain Controller Skeleton Key Malware & Mimikatz” by @PyroTek3: https://adsecurity.org/?p=1255
   
-c.	SID History scan
+### C.  SID History scan
 i.	In this scan page, there will be a list of the domain accounts with secondary SID (SID History attribute).
 ii.	Each account will have two connector arrows, one to the left for its main SID, the other to the right for its secondary SID (with the mask icon).
 iii.	If the main SID is privileged, it will be in red, and if the SID history is privileged, there will be displayed as a red mask.
@@ -89,7 +91,7 @@ v.	For manual examination of the scan results, unzip the saved zBang results fil
 vi.	More details on abusing SID History are available in the blog post 
 “Security Focus: sIDHistory” by Ian Farr: https://blogs.technet.microsoft.com/poshchap/2015/12/04/security-focus-sidhistory-sid-filtering-sanity-check-part-1-aka-post-100/
   
-d.	RiskySPNs scan
+### D.  RiskySPNs scan
 i.	In the scan results page, there will be a list of all the SPNs that registered with user accounts.
 ii.	If the user account is a privileged account, it will be in red.
 iii.	It is very risky to have SPNs that are registered under privileged accounts. Try and change/disable those SPNs. Use machine accounts for SPNs or reduce unnecessary permissions from the users who have SPNs registered to them. It’s also recommended to assign strong passwords to those users, and implement automatic rotation of each password. 
@@ -100,7 +102,7 @@ v.	More details on Risky SPNs are available in the blog post-
 “Service Accounts – Weakest Link in the Chain”:
 https://www.cyberark.com/blog/service-accounts-weakest-link-chain/
   
-e.	Mystique scan
+### E.  Mystique scan
 i.	The scan result page includes a list of all the discovered accounts trusted with delegation permissions.
 ii.	There are three delegation types: Unconstrained, Constrained and Constrained with Protocol Transition. The account color corresponds to its delegation permission type.
 iii.	Disable old and unused accounts trusted with delegation rights. In particular, check the risky delegation types of “Unconstrained” and “Constrained with Protocol Transition.” Convert “Unconstrained” delegation to “Constrained” delegation so it will be permitted only for specific needed services. “Protocol Transition” type of delegation must be revalidated and disabled, if possible.
