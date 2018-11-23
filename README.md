@@ -56,12 +56,50 @@ b.	Skeleton Key scan
 i.	In the scan page (click the relevant bookmark in the above section), there will be a list of all the scanned DCs. 
 ii.	Make sure all of them are clean and marked with green.
 iii.	If the scan finds a potential infected DC, it is crucial to initiate an investigation process.
-![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/skeleton%20key.png "The abusable ACLs")  
+![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/skeleton%20key.png "Skeleton Key scan results")  
 iv.	More details on Skeleton Key malware are available in the blog post
 “Active Directory Domain Controller Skeleton Key Malware & Mimikatz” by @PyroTek3: https://adsecurity.org/?p=1255
   
+c.	SID History scan
+i.	In this scan page, there will be a list of the domain accounts with secondary SID (SID History attribute).
+ii.	Each account will have two connector arrows, one to the left for its main SID, the other to the right for its secondary SID (with the mask icon).
+iii.	If the main SID is privileged, it will be in red, and if the SID history is privileged, there will be displayed as a red mask.
+iv.	You should search for the possible very risky situations, in which an account has a non-privileged main SID but at the same time has a privileged secondary SID.
+This scenario is very suspicious and you should check this account and investigate why it received a privileged secondary SID. Make sure it wasn’t added by a potential intruder in the network.
+![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/SIDhistory.png "SID History scan results")  
+* For a visualization convenience, if a large number of accounts with non-privileged SID history are present (more than ten), they will be filtered out from the display, as those accounts are less sensitive.
+v.	For manual examination of the scan results, unzip the saved zBang results file and check csv file:
+“[Path of the zBang’s unzipped results file]\SIDHistory\Results\Report.csv".
+vi.	More details on abusing SID History are available in the blog post 
+“Security Focus: sIDHistory” by Ian Farr: https://blogs.technet.microsoft.com/poshchap/2015/12/04/security-focus-sidhistory-sid-filtering-sanity-check-part-1-aka-post-100/
   
+d.	RiskySPNs scan
+i.	In the scan results page, there will be a list of all the SPNs that registered with user accounts.
+ii.	If the user account is a privileged account, it will be in red.
+iii.	It is very risky to have SPNs that are registered under privileged accounts. Try and change/disable those SPNs. Use machine accounts for SPNs or reduce unnecessary permissions from the users who have SPNs registered to them. It’s also recommended to assign strong passwords to those users, and implement automatic rotation of each password. 
+![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/riskySPNs.png "riskySPN scan results")   
+iv.	For manual examination of the scan results, unzip the saved zBang results file and check csv file:
+“[Path of the zBang’s unzipped results file]\RiskySPN-master\Results\RiskySPNs-test.csv".
+v.	More details on Risky SPNs are available in the blog post-
+“Service Accounts – Weakest Link in the Chain”:
+https://www.cyberark.com/blog/service-accounts-weakest-link-chain/
+  
+e.	Mystique scan
+i.	The scan result page includes a list of all the discovered accounts trusted with delegation permissions.
+ii.	There are three delegation types: Unconstrained, Constrained and Constrained with Protocol Transition. The account color corresponds to its delegation permission type.
+iii.	Disable old and unused accounts trusted with delegation rights. In particular, check the risky delegation types of “Unconstrained” and “Constrained with Protocol Transition.” Convert “Unconstrained” delegation to “Constrained” delegation so it will be permitted only for specific needed services. “Protocol Transition” type of delegation must be revalidated and disabled, if possible.
+![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/mystique.png "Mystique scan results") 
+iv.	For manual examination of the scan results, unzip the saved zBang results file and check csv file:
+“[Path of the zBang’s unzipped results file]\Mystique-master\Results\delegation_info.csv".
+v.	More details on risky delegation configuration are available in the blog post - 
+“Weakness Within: Kerberos Delegation”:
+https://www.cyberark.com/threat-research-blog/weakness-within-kerberos-delegation/
+  
+# Performance
+zBang runs quickly and doesn’t need any special privileges over the network. As the only communication required is to the domain controller through legitimate read-only LDAP queries, a typical execution time of zBang on a network with around 1,000 user accounts will be seven minutes.  
+When you intend to scan large networks with multiple trust-connected domains, it’s recommended to check the domain trusts configuration or run zBang separately from within each domain to avoid possible permission and connectivity issues.  
 
-
-
-
+# Authors
+zBang was developed by CyberArk Labs as a quick and dirty POC intended to help security teams worldwide. Feedback and comments are welcome.  
+Main points of contact:  
+Asaf Hecht ([@Hechtov](https://twitter.com/Hechtov)), Nimrod Stoler ([@n1mr0d5](https://twitter.com/n1mr0d5)) and Lavi Lazarovitz ([@__Curi05ity__](https://twitter.com/__Curi05ity__))  
