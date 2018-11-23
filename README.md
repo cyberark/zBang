@@ -1,5 +1,7 @@
-![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/zBang%20tool.png "zBang risk assessment tool")  
-  
+<p align="center">
+  <img src="https://github.com/Hechtov/Photos/blob/master/zBang/zBang%20tool.png">
+</p>
+    
 **zBang is a special risk assessment tool that detects potential privileged account threats in the scanned network.**  
   
 Organizations and red teamers can utilize zBang to identify potential attack vectors and improve the security posture of the network. The results can be analyzed with the graphic interface or by reviewing the raw output files.  
