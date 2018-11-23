@@ -25,6 +25,11 @@ In the following example, all five scans are chosen:
   
 <img src="https://github.com/Hechtov/Photos/blob/master/zBang/opening%20menu.png" data-canonical-src="https://github.com/Hechtov/Photos/blob/master/zBang/opening%20menu.png" width="200" height="400" />  
   
+  
+<p align="center">
+  <img width="460" height="300" src="https://github.com/Hechtov/Photos/blob/master/zBang/opening%20menu.png">
+</p>
+  
 3.	To view demo results, click “Reload.”  
 zBang tool comes with built-in initiating demo data; you can view the results of the different scans and play with the graphic interface.
 4.	To initiate new scans in your network, click “Launch.” A new window will pop up and will display the status of the different scans.
