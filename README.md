@@ -20,14 +20,9 @@ Organizations and red teamers can utilize zBang to identify potential attack vec
 1.	Download and run the release version from this GitHub repository [link] or compile it with your favorite compiler.
 2.	In the opening screen, choose what scans you wish to execute.  
 In the following example, all five scans are chosen:  
-![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/opening%20menu.png | width=100 "Opening menu")  
-  
-  
-<img src="https://github.com/Hechtov/Photos/blob/master/zBang/opening%20menu.png" data-canonical-src="https://github.com/Hechtov/Photos/blob/master/zBang/opening%20menu.png" width="200" height="400" />  
-  
   
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Hechtov/Photos/blob/master/zBang/opening%20menu.png">
+  <img width="556" height="274" src="https://github.com/Hechtov/Photos/blob/master/zBang/opening%20menu.png">
 </p>
   
 3.	To view demo results, click “Reload.”  
