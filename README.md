@@ -52,7 +52,11 @@ iv.	On the right side - view “Shadow Admins.” Those accounts get their privi
 v.	On each account, you can double click and review its permissions graph. It may help you understand why this account was classified as privileged.
 ![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/aclight%20tree.png "ACLight permissions tree")
 vi.	The different abusable ACL permissions are described in a small help page. Click the “question mark” in the upper right corner to view:  
-![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/risky%20ACLs.png "The abusable ACLs")  
+  
+<p align="center">
+  <img width="488" height="733" src="https://github.com/Hechtov/Photos/blob/master/zBang/risky%20ACLs.png">
+</p>
+  
 vii.	More details on the threat of Shadow Admins are available in the blog post -
 “Shadow Admins – The Stealthy Accounts That You Should Fear The Most”:
 https://www.cyberark.com/threat-research-blog/shadow-admins-stealthy-accounts-fear/
