@@ -28,9 +28,17 @@ In the following example, all five scans are chosen:
 3.	To view demo results, click “Reload.”  
 zBang tool comes with built-in initiating demo data; you can view the results of the different scans and play with the graphic interface.
 4.	To initiate new scans in your network, click “Launch.” A new window will pop up and will display the status of the different scans.
-![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/aclight.png "Scan in progress") 
+  
+<p align="center">
+  <img src="https://github.com/Hechtov/Photos/blob/master/zBang/aclight.png">
+</p>
+  
 5.	When the scans are completed, there will be a message saying the results were exported to an external zip file.
-![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/zbang%20finished.png "Scan is finished")  
+  
+<p align="center">
+  <img src="https://github.com/Hechtov/Photos/blob/master/zBang/zbang%20finished.png">
+</p>
+  
 6.	The results zip file will be in the same folder of zBang and will have a unique name with the time and the date of the scans. You can also import previous results into the zBang GUI without the need of rerunning the scans.  
 To import previous results, click “Import” in the zBang’s opening screen.  
   
