@@ -66,14 +66,14 @@ To import previous results, click “Import” in the zBang’s opening screen.
 7.	More details on the threat of Shadow Admins are available in the blog post -
 “Shadow Admins – The Stealthy Accounts That You Should Fear The Most”:
   
-https://www.cyberark.com/threat-research-blog/shadow-admins-stealthy-accounts-fear/
+   https://www.cyberark.com/threat-research-blog/shadow-admins-stealthy-accounts-fear/
   
 8.	For manual examination of the scan results,  unzip the saved zBang results file and check the results folder:
 "[Path of the zBang’s unzipped results file]\ACLight-master\Results”, contains a summary report - “Privileged Accounts - Layers Analysis.txt”.
 9.	On each of the discovered privileged accounts: 
-  1.	Identify the privileged account.
-  2.	Reduce unnecessary permissions from the account.
-  3.	Secure the account. After validating these three steps, you can mark the account with a “V” in the small selection box, turning it green on the interface.
+  -	Identify the privileged account.
+  -	Reduce unnecessary permissions from the account.
+  -	Secure the account. After validating these three steps, you can mark the account with a “V” in the small selection box, turning it green on the interface.
 10.	The goal is to make all the accounts marked as “secured” with the green color.
   
 ### B.  Skeleton Key scan
