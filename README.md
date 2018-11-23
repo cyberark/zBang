@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <img src="https://github.com/Hechtov/Photos/blob/master/zBang/zBang%20tool.png">
 </p>
     
