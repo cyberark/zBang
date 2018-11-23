@@ -21,6 +21,10 @@ Organizations and red teamers can utilize zBang to identify potential attack vec
 2.	In the opening screen, choose what scans you wish to execute.  
 In the following example, all five scans are chosen:  
 ![alt text](https://github.com/Hechtov/Photos/blob/master/zBang/opening%20menu.png | width=100 "Opening menu")  
+  
+  
+<img src="https://camo.githubusercontent.com/..." data-canonical-src="https://github.com/Hechtov/Photos/blob/master/zBang/opening%20menu.png" width="200" height="400" />  
+  
 3.	To view demo results, click “Reload.”  
 zBang tool comes with built-in initiating demo data; you can view the results of the different scans and play with the graphic interface.
 4.	To initiate new scans in your network, click “Launch.” A new window will pop up and will display the status of the different scans.
