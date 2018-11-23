@@ -64,12 +64,12 @@ To import previous results, click “Import” in the zBang’s opening screen.
 </p>
   
 7.	More details on the threat of Shadow Admins are available in the blog post -
-“Shadow Admins – The Stealthy Accounts That You Should Fear The Most”:
+“Shadow Admins – The Stealthy Accounts That You Should Fear The Most”:  
      https://www.cyberark.com/threat-research-blog/shadow-admins-stealthy-accounts-fear/
   
 8.	For manual examination of the scan results,  unzip the saved zBang results file and check the results folder:
 "[Path of the zBang’s unzipped results file]\ACLight-master\Results”, contains a summary report - “Privileged Accounts - Layers Analysis.txt”.
-9.	On each of the discovered privileged accounts: 
+9.	On each of the discovered privileged accounts:  
     -	Identify the privileged account.
     -	Reduce unnecessary permissions from the account.
     -	Secure the account. After validating these three steps, you can mark the account with a “V” in the small selection box, turning it green on the interface.
