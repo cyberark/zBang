@@ -6,6 +6,9 @@
   
 Organizations and red teamers can utilize zBang to identify potential attack vectors and improve the security posture of the network. The results can be analyzed with the graphic interface or by reviewing the raw output files.  
   
+More details on zBang could be found in the Big zBang Theory blog post by Asaf Hecht ([@Hechtov](https://twitter.com/Hechtov):
+https://www.cyberark.com/threat-research-blog/the-big-zbang-theory-a-new-open-source-tool/
+  
 **The tool is built from five different scanning modules:**  
 1.	**ACLight scan** - discovers the most privileged accounts that must be protected, including suspicious Shadow Admins.
 2.	**Skeleton Key scan** - discovers Domain Controllers that might be infected by Skeleton Key malware.
