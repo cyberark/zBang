@@ -22,7 +22,8 @@ https://www.cyberark.com/threat-research-blog/the-big-zbang-theory-a-new-open-so
 3.	PowerShell version 3 or above and .NET 4.5 (it comes by default in Windows 8/2012 and above).
   
 # Quick Start Guide
-1.	Download and run the release version from this GitHub repository [link] or compile it with your favorite compiler.
+1.	Download and run the release version from this GitHub repository [link](https://github.com/cyberark/zBang/releases) or compile it with your favorite compiler.
+- Sometimes, when downloading it through the browser, you will need to "unblock" the downloaded zBang.exe file.
 2.	In the opening screen, choose what scans you wish to execute.  
 In the following example, all five scans are chosen:  
   
