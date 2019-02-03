@@ -23,7 +23,7 @@ https://www.cyberark.com/threat-research-blog/the-big-zbang-theory-a-new-open-so
   
 # Quick Start Guide
 1.	Download and run the release version from this GitHub repository [link](https://github.com/cyberark/zBang/releases) or compile it with your favorite compiler.  
--- Sometimes, when downloading it through the browser, you will need to "unblock" the downloaded zBang.exe file.
+  - Sometimes, when downloading it through the browser, you will need to "unblock" the downloaded zBang.exe file.  
 2.	In the opening screen, choose what scans you wish to execute.  
 In the following example, all five scans are chosen:  
   
