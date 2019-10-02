@@ -16,6 +16,9 @@ https://www.cyberark.com/threat-research-blog/the-big-zbang-theory-a-new-open-so
 4.	**RiskySPNs scan** - discovers risky configuration of SPNs that might lead to credential theft of Domain Admins
 5.	**Mystique scan** - discovers risky Kerberos delegation configuration in the network.  
   
+For your convenience, there is also a summarized Data Sheet about zBang:  
+https://github.com/cyberark/zBang/blob/master/zBang%20Summarized%20Data%20Sheet.pdf    
+  
 # Execution Requirements
 1.	Run it with any domain user. The scans do not require any extra privileges; the tool performs read-only LDAP queries to the DC.
 2.	Run the tool from a domain joined machine (a Windows machine).
