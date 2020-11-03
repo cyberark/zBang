@@ -139,6 +139,10 @@ https://www.cyberark.com/threat-research-blog/weakness-within-kerberos-delegatio
 zBang runs quickly and doesn’t need any special privileges over the network. As the only communication required is to the domain controller through legitimate read-only LDAP queries, a typical execution time of zBang on a network with around 1,000 user accounts will be seven minutes.   
 When you intend to scan large networks with multiple trust-connected domains, it’s recommended to check the domain trusts configuration or run zBang separately from within each domain to avoid possible permission and connectivity issues.  
   
+### Checksum  
+zBang version 1.1:  
+SHA-256 fe388b5be2779ed2d6b6da0ea38c82edc30e9b41bb4619cc30d1ccdfc271112d  
+  
 # Authors
 zBang was developed by CyberArk Labs as a quick and dirty POC intended to help security teams worldwide. Feedback and comments are welcome.  
   
