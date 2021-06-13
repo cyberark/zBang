@@ -45,8 +45,8 @@ namespace ZbangGui
                 if( args[0] == "compress" )
                 {
                     // start by copying all relevant data to version directory
-                    Process.Start( "xcopy.exe", "\"c:\\Users\\nimrod\\Documents\\Visual Studio 2015\\Projects\\graphviz4net_b19bb0cdc8c6\\src\\Graphviz4Net.WPF.Example\\bin\\release\\*.dll\" \"../version/System32/bin/release/*.*\" /Y" );
-                    Process.Start( "xcopy.exe", "\"c:\\Users\\nimrod\\Documents\\Visual Studio 2015\\Projects\\graphviz4net_b19bb0cdc8c6\\src\\Graphviz4Net.WPF.Example\\bin\\release\\*.exe\" \"../version/System32/bin/release/*.*\" /Y");
+                    Process.Start( "xcopy.exe", "\"c:\\Users\\yanivy\\Documents\\Visual Studio 2015\\Projects\\zBang\\SourceCode\\src\\Graphviz4Net.WPF.Example\\bin\\release\\*.dll\" \"../version/System32/bin/release/*.*\" /Y" );
+                    Process.Start( "xcopy.exe", "\"c:\\Users\\yanivy\\Documents\\Visual Studio 2015\\Projects\\zBang\\SourceCode\\src\\Graphviz4Net.WPF.Example\\bin\\release\\*.exe\" \"../version/System32/bin/release/*.*\" /Y");
 
                     for( int i = 0; i < 5; i++ )
                     {

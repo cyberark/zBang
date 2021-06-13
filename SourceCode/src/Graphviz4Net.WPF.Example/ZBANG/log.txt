@@ -1,0 +1,34 @@
+
+
+zBang Launched at 08/06/2021 15:05:01
+-------------------------------------------
+PSVersion                	5.1.19041.906
+PSEdition                	Desktop   
+PSCompatibleVersions     	1.0,2.0,3.0,4.0,5.0,5.1.19041.906,
+BuildVersion             	10.0.19041.906
+CLRVersion               	4.0.30319.42000
+WSManStackVersion        	3.0       
+PSRemotingProtocolVersion	2.3       
+SerializationVersion     	1.1.0.1   
+-------------------------------------------
+
+.NET Framework Version: 4.7 or later
+1 domain(s) in forest:
+(1) AetosDios.local
+
+
+zBang Launched at 08/06/2021 15:05:39
+-------------------------------------------
+PSVersion                	5.1.19041.906
+PSEdition                	Desktop   
+PSCompatibleVersions     	1.0,2.0,3.0,4.0,5.0,5.1.19041.906,
+BuildVersion             	10.0.19041.906
+CLRVersion               	4.0.30319.42000
+WSManStackVersion        	3.0       
+PSRemotingProtocolVersion	2.3       
+SerializationVersion     	1.1.0.1   
+-------------------------------------------
+
+.NET Framework Version: 4.7 or later
+1 domain(s) in forest:
+(1) AetosDios.local

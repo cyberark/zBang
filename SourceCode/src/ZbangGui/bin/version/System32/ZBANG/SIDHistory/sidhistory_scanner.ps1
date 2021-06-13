@@ -4,7 +4,8 @@ Release Notes:
 The SID History module queries the Active Directory and searches for
 accounts that have SID history attribute.
  
-Version 1: 14.6.16
+Version 1: 14.6.17
+Last Update: 13/06/2021
 
 Based on riskySPN script:
 https://github.com/CyberArkLabs/RiskySPN
@@ -425,6 +426,7 @@ function Report-UsersWithSIDHistory
     [CmdletBinding()]
     param
     (
+        [String]$Domain ,
         [ValidateSet("CSV", "XML", "HTML", "TXT")]
         [String]$Type = "CSV",
        # [String]$Path = "$env:USERPROFILE\Documents",
@@ -487,8 +489,12 @@ function Report-UsersWithSIDHistory
 
     $FilePath = "$Path\$Name.$($Type.ToLower())"
     $FilePathCSV = "$Path\$Name" +".csv"
-
-    $Report = Get-UsersWithSIDHistory -FullData
+	if($Domain)
+    {
+		$Report = Get-UsersWithSIDHistory -FullData -Domain $Domain
+	}else{
+		$Report = Get-UsersWithSIDHistory -FullData
+	}
 
     if ($Summary)
     {
@@ -1310,4 +1316,4 @@ function Convert-LDAPProperty {
 }
 
 
-Report-UsersWithSIDHistory
+#Report-UsersWithSIDHistory
