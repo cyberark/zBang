@@ -12,7 +12,6 @@ C:\Users\yanivy\Documents\Visual Studio 2015\Projects\zBang\SourceCode\src\Zbang
 C:\Users\yanivy\Documents\Visual Studio 2015\Projects\zBang\SourceCode\src\ZbangGui\bin\Release\ZbangGui.exe
 C:\Users\yanivy\Documents\Visual Studio 2015\Projects\zBang\SourceCode\src\ZbangGui\bin\Release\ZbangGui.pdb
 C:\Users\yanivy\Documents\Visual Studio 2015\Projects\zBang\SourceCode\src\ZbangGui\obj\Release\ZbangGui.Properties.Resources.resources
-C:\Users\yanivy\Documents\Visual Studio 2015\Projects\zBang\SourceCode\src\ZbangGui\obj\Release\ZbangGui.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\Visual Studio 2015\Projects\zBang\SourceCode\src\ZbangGui\bin\Release\ZbangGui.exe.config
 C:\Users\Administrator\Documents\Visual Studio 2015\Projects\zBang\SourceCode\src\ZbangGui\obj\Release\ZbangGui.exe
 C:\Users\Administrator\Documents\Visual Studio 2015\Projects\zBang\SourceCode\src\ZbangGui\obj\Release\ZbangGui.pdb
