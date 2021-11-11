@@ -20,14 +20,16 @@ namespace Graphviz4Net.WPF.Example
     /// </summary>
     public partial class domainSelection : Window
     {
-        List<string>domainNames;
+        List<string> domainNames;
         public int selection = -1;                             // -1 == all, otherwise it is the index in domainNames List
-        public domainSelection( List<string> inNames)
+        public domainSelection(List<string> inNames, string inScriptName)
         {
             InitializeComponent();
             domainNames = inNames;
-            foreach( string domainName in domainNames)
-                listBoxPartialScan.Items.Add( domainName );
+            domainSelect.Title = string.Format("{0} - Domain Selection", inScriptName);
+            textBox.Text = string.Format("{0} discovered a number of domains to be scanned.This may be a long process. Would you like to scan all domains or select from a list?", inScriptName);
+            foreach (string domainName in domainNames)
+                listBoxPartialScan.Items.Add(domainName);
 
             // show the dialog box with animation...
             this.Visibility = Visibility.Visible;

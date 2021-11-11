@@ -4,13 +4,13 @@ Release Notes:
 The SID History module queries the Active Directory and searches for
 accounts that have SID history attribute.
  
-Version 1: 14.6.16
+Version 1: 14.6.18
+Last Update: 15.08.2021
 
 Based on riskySPN script:
 https://github.com/CyberArkLabs/RiskySPN
 
 ----------------------------------------------------------------------------------------------------#>
-
 
 function Get-UsersWithSIDHistory
 {
@@ -27,8 +27,18 @@ function Get-UsersWithSIDHistory
         to an Entrepise/Domain admin.
         Requires Active Directory authentication (domain user is enough). 
 
+    .PARAMETER Ou
+        The name of the Organizational Unit to query.
+
     .PARAMETER Domain
-        The name of the domain to query. "Current" for the user's current domain. Defualts to the entire forest. 
+        The name of the domain to query. "Current" for the user's current domain. Defualts to the entire forest.
+    
+    .PARAMETER SecondSearch
+        The scope of the second search, the search is for users who have equal sid to one of the sidhistory.
+        Only apply with Ou parameter or domain parameter 
+        0 - no scope
+        1 - withn the domain scope
+        2 - entire forest scope 
 
     .PARAMETER AddGroups
         Add additional groups to consider as sensitive 
@@ -48,14 +58,66 @@ function Get-UsersWithSIDHistory
     [CmdletBinding()]
     param
     (
+        [string]$Ou,
         [string]$Domain,
+        [int]$SecondSearch=2,
         [array]$AddGroups,
         [switch]$Sensitive,
         [switch]$Stealth,
         [switch]$GetSPNs,
         [switch]$FullData
     )
+     
+    #Added 3.8.21 Log
+    function DisposeWrapper ($InputObject)
+    {
+        if ($null -ne $InputObject -and $InputObject -is [System.IDisposable])
+        {
+            $InputObject.Dispose()
+        }
+    }
+    # $todaysdate = Get-Date -Format "MM_dd_HH_mm_"
+    # $logfilepath = ".\"+$todaysdate+"Log.log"
+    # if(Test-Path $logfilepath)
+    # {
+    #     Remove-Item $logfilepath
+    # }
 
+    # function WriteToLog($messege)
+    # {
+    #     Add-Content $logfilepath -value $messege
+    # }
+    # Add stop transcript
+    # Start-Transcript -Path $logfilepath
+    # WriteToLog("Log Start")
+    function initSearcher {
+        $SearcherToReturn = New-Object System.DirectoryServices.DirectorySearcher
+        $SearcherToReturn.PageSize = 500
+        $SearcherToReturn.CacheResults = $false
+        return $SearcherToReturn
+    }
+
+    function forestDomains {
+        $SearchListForest = @()
+        try{
+            $SearchScope = [System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest()
+            }catch{
+                write-host "The current forest cannot be reached. Seems like the machine is not part of any domain." -ForegroundColor Red
+                exit
+            }
+            foreach ($ChildDomain in $($SearchScope.Domains))
+            {
+                if ($ChildDomain.DomainMode.value__ -lt 4)
+                {
+                    Write-host "The function level of domain: $($ChildDomain.Name) is lower than 2008R2 - it may cause partial results"
+                }
+                $SearchListForest += 'LDAP://DC=' + ($ChildDomain.Name -Replace ("\.",',DC='))
+            }
+            return $SearchListForest
+    }
+    # Added 3.8.21 till here
+
+    
     #recursivly get nested groups of a group object
     function Get-NestedGroups
     {
@@ -107,32 +169,29 @@ function Get-UsersWithSIDHistory
         {
             Write-host "The function level of domain: $($ChildDomain.name) is lower than 2008R2 - it may cause partial results"
         }
-        $SearchList += 'LDAP://DC=' + ($SearchScope.Name -Replace ("\.",',DC='))
-        Write-Host "Searching the domain: $($SearchScope.name)"
+        # $SearchList += 'LDAP://DC=' + ($SearchScope.Name -Replace ("\.",',DC='))
+        #Added 3.8.21
+        $SearchListDomain += 'LDAP://DC=' + ($SearchScope.Name -Replace ("\.",',DC='))
+        if ($Ou)
+        {
+            $SearchList += 'LDAP://OU='+$Ou+',DC=' + ($SearchScope.Name -Replace ("\.",',DC='))
+            Write-Host "Searching the domain: $($SearchScope.name) within the OU:$($Ou)"
+        }else{
+            $SearchList += 'LDAP://DC=' + ($SearchScope.Name -Replace ("\.",',DC='))
+            Write-Host "Searching the domain: $($SearchScope.name)"
+        }
+       
     }
     else 
     {
-        try{
-        $SearchScope = [System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest()
-        }catch{
-            write-host "The current forest cannot be reached. Seems like the machine is not part of any domain." -ForegroundColor Red
-            exit
-        }
-        foreach ($ChildDomain in $($SearchScope.Domains))
-        {
-            if ($ChildDomain.DomainMode.value__ -lt 4)
-            {
-                Write-host "The function level of domain: $($ChildDomain.Name) is lower than 2008R2 - it may cause partial results"
-            }
-            $SearchList += 'LDAP://DC=' + ($ChildDomain.Name -Replace ("\.",',DC='))
-        }
-        Write-Host "Searching the forest: $($SearchScope.name)"    
+        $SearchList = forestDomains 
     }
 
     #creating ADSI searcher 
-    $Searcher = New-Object System.DirectoryServices.DirectorySearcher
-    $Searcher.PageSize = 500
+    $Searcher = initSearcher
     $Searcher.PropertiesToLoad.Add("distinguishedname") | Out-Null
+    # Added 3.8.21
+   
 
 #========================================================================= Gathering Sensitive Groups =========================================================================
 
@@ -145,6 +204,7 @@ function Get-UsersWithSIDHistory
     }
     $AllSensitiveGroups = @()
     Write-Verbose "Gathering sensitive groups"
+    $counterPath = 1
     foreach ($Path in $SearchList)
     {
         $Searcher.SearchRoot = $Path
@@ -154,6 +214,9 @@ function Get-UsersWithSIDHistory
             $Searcher.Filter = "(&(|(samAccountType=536870912)(samAccountType=268435456))(|(samAccountName=$GroupName)(name=$GroupName)))"
             try {$GroupObjects = $Searcher.FindAll()}
             catch {Write-Warning "Could not communicate with the domain: $($Path -replace "LDAP://DC=" -replace ",DC=", ".") - Does it have trust?"}
+            #Added 3.8.21
+            # WriteToLog("Line 218 Searcher.FindAll() complete with filter $($GroupName) and path number: $($counterPath)")
+
             #if we find groups
             if ($GroupObjects)
             {
@@ -163,8 +226,12 @@ function Get-UsersWithSIDHistory
                     $AllSensitiveGroups += Get-NestedGroups -DN $GroupObject.Properties.distinguishedname
                 }
             }
-            else {Write-Warning "Could not find group: $Group"}     
+            else {Write-Warning "Could not find group: $Group"}
+            # Added 3.8.21
+            DisposeWrapper($GroupObjects)
+            
         }
+        $counterPath++
     }
     Write-Verbose "Number of sensitive groups found: $($AllSensitiveGroups.Count)"
 
@@ -173,6 +240,11 @@ function Get-UsersWithSIDHistory
     Write-Host "Gathering user accounts with SID History attribute"
     #list of properties to retreive from AD
     $Properies = "samaccountname","displayname", "SID", "SIDHistory", "userprincipalname", "memberof","pwdlastset","objectCategory","ObjectClass"
+    
+    #Added 3.8.21
+    DisposeWrapper($Searcher)
+    $Searcher = initSearcher
+    $Searcher.PropertiesToLoad.Add("distinguishedname") | Out-Null
 
     foreach ($Property in $Properies)
     {
@@ -183,6 +255,7 @@ function Get-UsersWithSIDHistory
     $Searcher.Filter = "(&(objectCategory=User)(SIDHistory=*))"
 
     $UsersWithSIDHistory = @()
+    $counterPath = 1
     foreach ($Path in $SearchList)
     {
         $Searcher.SearchRoot = $Path
@@ -190,11 +263,15 @@ function Get-UsersWithSIDHistory
         #printing the user results
         #foreach ($objResult in $Searcher.FindAll())
         #    {$objItem = $objResult.Properties; $objItem.displayname}
-        
+
         try {$UsersWithSIDHistory += $Searcher.FindAll()}
-        catch {Write-Warning "Could not communicate with the domain: $($Path -replace "LDAP://DC=" -replace ",DC=", ".") - Does it have trust?"}      
+        catch {Write-Warning "Could not communicate with the domain: $($Path -replace "LDAP://DC=" -replace ",DC=", ".") - Does it have trust?"}
+        # WriteToLog ("Line 269 DirectorySearcher.findall() Complete at Path number: $($counterPath)")
+        $counterPath++
     } 
-          
+    
+    DisposeWrapper($Searcher)
+
     if ($($UsersWithSIDHistory.Count -eq 0))
     {
         Write-host "`nSID History scan completed`nThe scanned forest don't have user accounts with SID History" -ForegroundColor Yellow
@@ -209,8 +286,33 @@ function Get-UsersWithSIDHistory
 
     $CurrentDate = Get-Date
     $AllData = @()
+
+    #Added 3.8.21
+    DisposeWrapper($Searcher)
+    # WriteToLog ("Line 292 There is $($UsersWithSIDHistory.Count) UsersWithSIDHistory")
+
+     #Added 3.8.21 
+     if ($Ou -or $Domain){
+        Switch($SecondSearch)
+        {
+            0 {  $SearchList = @()}
+            1 {  $SearchList = $SearchListDomain}
+            2 {  $SearchList = forestDomains}
+        }   
+    }
+
+    $counterUsers=1
     foreach ($User in $UsersWithSIDHistory)
     {
+        #Added 3.8.21
+        # WriteToLog("Line 308: start enumerate sidhistory user number $($counterUsers)  ")
+        $Searcher = initSearcher
+        $Searcher.PropertiesToLoad.Add("distinguishedname") | Out-Null
+        foreach ($Property in $Properies)
+        {
+            $Searcher.PropertiesToLoad.Add($Property) | Out-Null
+        }
+
         #write-host ""
         Write-Verbose "Gathering info about the user: $($User.Properties.displayname)"
         
@@ -243,11 +345,15 @@ function Get-UsersWithSIDHistory
         #write-host $strSID.Value
 		
         #write-host "SidHistory:"
-        $objItemT = $User.Properties
-		$tsam = $objItemT.samaccountname
+
+        # Added 3.8.21
+        # $objItemT = $User.Properties
+		# $tsam = $objItemT.samaccountname
+
 		$objpath = $User.path
 		$objpath1=[ADSI]"$objpath"
 		$objectSIDHistory = [byte[]]$objpath1.sidhistory.value
+       
 		$sidHistory = new-object System.Security.Principal.SecurityIdentifier $objectSIDHistory,0 
 		#write-host $sidHistory 
 
@@ -257,6 +363,8 @@ function Get-UsersWithSIDHistory
         $Searcher.Filter = "(objectSID=$sidHistory)"
        
         $infoFromHistory = @()
+    
+        $counterPath = 1
         foreach ($Path in $SearchList)
         {
             $Searcher.SearchRoot = $Path
@@ -266,20 +374,27 @@ function Get-UsersWithSIDHistory
             #    {$objItem = $objResult.Properties; $objItem.displayname}
         
             try {$infoFromHistory += $Searcher.FindAll()}
-            catch {Write-Warning "Could not communicate with the domain: $($Path -replace "LDAP://DC=" -replace ",DC=", ".") - Does it have trust?"}      
+            catch {Write-Warning "Could not communicate with the domain: $($Path -replace "LDAP://DC=" -replace ",DC=", ".") - Does it have trust?"} 
+            # WriteToLog ("Line 378 search for sidhistory as objectsid in path number $($counterPath)")
+            $counterPath++
         }
-
+        
         $historyNotFound = 'previousSIDnotFound'
         if ($infoFromHistory.Count -eq 0)
         {
+           
             $HistoryName = $historyNotFound
             $HistoryMemberOf = $historyNotFound
         }
         else {
             #write-host "SidHistory Name:"
-            $objSID = New-Object System.Security.Principal.SecurityIdentifier ($sidHistory)
-            $objUser = $objSID.Translate( [System.Security.Principal.NTAccount])
-            $HistoryName = $objUser.Value
+            try{
+                $objSID = New-Object System.Security.Principal.SecurityIdentifier ($sidHistory)
+                $objUser = $objSID.Translate( [System.Security.Principal.NTAccount])
+                $HistoryName = $objUser.Value
+            } 
+            catch { $HistoryName = 'CouldNotFind'}
+
             #write-host $HistoryName
             #$HistoryName = $HistoryName -replace ".*\\"
             #write-host $userHistoryName
@@ -306,16 +421,12 @@ function Get-UsersWithSIDHistory
             $secondaryMemberOf = [string]($HistoryMemberOf | foreach {[string]$_})  
             #write-host $HistoryMemberOf
         }
-
-
-
+        
         #$secondaryDomainSID = Convert-SidToName $sid
-
-        write-host ""
         $ofs = '<|>'
         $initiallyMemberOf = [string](($User.Properties.memberof -replace "CN=" -replace ",.*") | foreach {[string]$_}) 
          
-        #NS 02-01-2018
+        # NS 02-01-2018
         $userphoto = ""
         $bytes = GetMemberThumbnail([string]$User.Properties.samaccountname)
         if ($bytes -ne $null) {
@@ -352,13 +463,25 @@ function Get-UsersWithSIDHistory
             UserPhoto           = $userphoto
         } 
         $AllData += $UserData 
-    }
+        
+        #Added 3.8.21
+        DisposeWrapper($infoFromHistory)
+        DisposeWrapper($Searcher)
 
+        # WriteToLog("Line 473: enumerate sidhistory user number $($counterUsers) ended ")
+        $counterUsers++
+    }
+    
     Write-Verbose "Number of users included in the list: $($AllData.UserName.Count)"
+
+    #Added 3.8.21
+    DisposeWrapper($UsersWithSIDHistory)
+  
 
     #For now the FullData paramter is not relevant
     if ($FullData) {return $AllData}    
     else {return $AllData}   
+   
 }
 
 
@@ -379,6 +502,9 @@ function GetMemberThumbnail($userName)
     {
         return $result.Properties["thumbnailPhoto"]
     }
+
+    #Added 3.8.21
+    DisposeWrapper($searcher)
 }
 
 
@@ -397,6 +523,19 @@ function Report-UsersWithSIDHistory
         shouldn't be there and it might be as a result of an attack.
         With compromised SID history attribute - an attacker can impersonate
         to an Entrepise/Domain admin.
+
+     .PARAMETER Ou
+        The name of the Organizational Unit to query.
+
+    .PARAMETER Domain
+        The name of the domain to query. "Current" for the user's current domain. Defualts to the entire forest.
+    
+    .PARAMETER SecondSearch
+        The scope of the second search, the search is for users who have equal sid to one of the users sidhistory.
+        Only apply with Ou parameter or domain parameter 
+        0 - no scope
+        1 - withn the domain scope
+        2 - entire forest scope 
 
     .PARAMETER Type
         The format of the report file. The default is CSV 
@@ -425,13 +564,18 @@ function Report-UsersWithSIDHistory
     [CmdletBinding()]
     param
     (
+        [String]$Ou, 
+        [String]$Domain ,
+        [int]$SecondSearch=1,
+        # [int]$ResultsPerCSV,
         [ValidateSet("CSV", "XML", "HTML", "TXT")]
         [String]$Type = "CSV",
-       # [String]$Path = "$env:USERPROFILE\Documents",
-	[String]$Path = "Results/",
+      # [String]$Path = "$env:USERPROFILE\Documents",
+    	[String]$Path = "Results/",
         [String]$Name = "Report",
         [Switch]$Summary,
-        [Switch]$DoNotOpen
+        [Switch]$DoNotOpen,
+        [Switch]$FullData
     )
 
     # Credits for Boe Prox from TechNet - https://gallery.technet.microsoft.com/scriptcenter/Convert-OutoutForCSV-6e552fc6
@@ -484,17 +628,52 @@ function Report-UsersWithSIDHistory
         End {}
     }
 
-
     $FilePath = "$Path\$Name.$($Type.ToLower())"
     $FilePathCSV = "$Path\$Name" +".csv"
+	
+    #Added 3.8.21
+    if($Domain)
+    {
+        if($Ou){
+            $Report = Get-UsersWithSIDHistory -Ou $Ou -Domain $Domain -SecondSearch $SecondSearch
+        }else{
+            $Report = Get-UsersWithSIDHistory -Domain $Domain -SecondSearch $SecondSearch
+        }
+    }else{
+        $Report = Get-UsersWithSIDHistory 
+    }
 
-    $Report = Get-UsersWithSIDHistory -FullData
+    #for Full Data in the future
+    # $ParamsUsersWithSid = ""
+    # if ($FullData){
+    #     $ParamsUsersWithSid = $ParamsUsersWithSid + '-FullData' 
+    # }
+    # if ($Domain){
+    #     if($Ou){
+    #         $ParamsUsersWithSid = $ParamsUsersWithSid + " -Ou $($Ou)" + " -Domain $($Domain)"
+    #     }else{
+    #         $ParamsUsersWithSid = $ParamsUsersWithSid + " -Domain $($Domain)"
+    #     }
+    # }
+   
+    # $Report = powershell -command "& { . .\SIDHistory_Scanner.ps1; Get-UsersWithSIDHistory $($ParamsUsersWithSid) }" 
+    #  $Report=Get-UsersWithSIDHistory "$($ParamsUsersWithSid)"
 
     if ($Summary)
     {
         #---------------Not relevant for now-------------------------------------------------------------------------#
         #$Report = $Report | Select-Object UserName,DomainName,IsSensitive,PwdAge,CrackWindow,RunsUnder
     }
+
+    # Added 3.8.21
+    if (!(Test-Path -Path $FilePath)) {
+        "Results folder doesn't exist. Create Folder"
+        New-Item -Path ".\" -Name "Results" -ItemType "directory"
+    } 
+    # $Check = Get-Location
+    # Write-Host $Check
+    # Added till here
+    
 # NS    if ($Type -eq "CSV" ) {$Report | Convert-Output | Export-Csv $FilePath -Encoding UTF8 -NoTypeInformation}
     if ($Type -eq "CSV" ) {$Report | Export-Csv $FilePath -Encoding UTF8 -NoTypeInformation}
     elseif ($Type -eq "XML") 
@@ -510,6 +689,8 @@ function Report-UsersWithSIDHistory
     {
 #        Invoke-Item $FilePath
     }    
+
+    # Stop-Transcript 
 }
 
 
@@ -1090,7 +1271,8 @@ filter Get-DomainSearcher {
 
     $Searcher.PageSize = $PageSize
     $Searcher.CacheResults = $False
-    $Searcher
+    #Added 3.8.21
+    DisposeWrapper($Searcher)
 }
 
 
@@ -1214,7 +1396,7 @@ function Get-ADObject {
         }
 
         $ObjectSearcher = Get-DomainSearcher -Domain $Domain -DomainController $DomainController -Credential $Credential -ADSpath $ADSpath -PageSize $PageSize
-
+        
         if($ObjectSearcher) {
             if($SID) {
                 $ObjectSearcher.filter = "(&(objectsid=$SID)$Filter)"
@@ -1236,8 +1418,9 @@ function Get-ADObject {
                     Convert-LDAPProperty -Properties $_.Properties
                 }
             }
-            $Results.dispose()
-            $ObjectSearcher.dispose()
+            DisposeWrapper($Results)
+            DisposeWrapper($ObjectSearcher)
+            
         }
     }
 }
@@ -1309,5 +1492,4 @@ function Convert-LDAPProperty {
     New-Object -TypeName PSObject -Property $ObjectProperties
 }
 
-
-Report-UsersWithSIDHistory
+# Report-UsersWithSIDHistory

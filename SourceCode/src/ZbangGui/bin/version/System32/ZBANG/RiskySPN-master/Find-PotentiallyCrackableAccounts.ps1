@@ -5,7 +5,7 @@
     Optional Dependencies: None
 
     Revision: 01-01-2018 With user photos NS
-    Last Update: 01/01/2018 AH
+    Last Update: 13/06/2021 AH
 
 #>
 
@@ -127,7 +127,8 @@ function Find-PotentiallyCrackableAccounts
             }
             $SearchList += 'LDAP://DC=' + ($ChildDomain.Name -Replace ("\.",',DC='))
         }
-        Write-Verbose "Searching the forest: $($SearchScope.name)"    
+        Write-Host "Searching the forest: $($SearchScope.name)" 
+        #Write-Verbose "Searching the forest: $($SearchScope.name)"    
     }
 
     #creating ADSI searcher 
@@ -484,8 +485,9 @@ function Export-PotentiallyCrackableAccounts
     [CmdletBinding()]
     param
     (
+        [String]$Domain,
         [ValidateSet("CSV", "XML", "HTML", "TXT")]
-        [String]$Type = "CSV",
+		[String]$Type = "CSV",
         #[String]$Path = "$env:USERPROFILE\Documents",
 		[String]$Path = "Results/",
         [String]$Name = "RiskySPNs-test",
@@ -538,7 +540,11 @@ function Export-PotentiallyCrackableAccounts
     }
 
     $FilePath = "$Path\$Name.$($Type.ToLower())"
-    $Report = Find-PotentiallyCrackableAccounts -FullData
+	if($Domain){
+		$Report = Find-PotentiallyCrackableAccounts -FullData -Domain $Domain
+	}else{
+		$Report = Find-PotentiallyCrackableAccounts -FullData
+	}
     if ($Summary) {
        $Report = $Report | Select-Object UserName,DomainName,IsSensitive,PwdAge,CrackWindow,RunsUnder
     }
@@ -553,7 +559,7 @@ function Export-PotentiallyCrackableAccounts
 } 
 
 # Call this NS 26/12/2017
-Export-PotentiallyCrackableAccounts
+#Export-PotentiallyCrackableAccounts
 
 
 
