@@ -140,8 +140,8 @@ zBang runs quickly and doesn’t need any special privileges over the network. A
 When you intend to scan large networks with multiple trust-connected domains, it’s recommended to check the domain trusts configuration or run zBang separately from within each domain to avoid possible permission and connectivity issues.  
   
 ### Checksum  
-zBang version 1.1:  
-SHA-256 fe388b5be2779ed2d6b6da0ea38c82edc30e9b41bb4619cc30d1ccdfc271112d  
+zBang version 1.2.1:  
+SHA-256 ce747740a9a24c330c18c2f09f6ee344e1806666abf21c8c2f964fa61f438903 
   
 # Authors
 zBang was developed by CyberArk Labs as a quick and dirty POC intended to help security teams worldwide. Feedback and comments are welcome.  
